@@ -1,0 +1,141 @@
+{
+  "journey": [
+    {
+      "company": "Gartner",
+      "title": "Senior Full Stack Developer",
+      "location": "Barcelona, Spain",
+      "date": "2021 – Present",
+      "bullets": [
+        "Develop and maintain scalable internal tools and services for Gartner’s global platforms.",
+        "Design and optimize high-throughput data pipelines and event-driven services using Kafka.",
+        "Integrate third party services to enrich content and provide meaningful insights for moderation and analytics."
+      ],
+      "stack": ".NET Core, Node.js (TypeScript), React, AWS (EKS, SNS, SQS), PostgreSQL, Kafka, ElasticSearch"
+    },
+    {
+      "company": "Engloba Tech",
+      "title": "Tech Lead / Senior Full Stack Developer",
+      "location": "Barcelona, Spain",
+      "date": "2019 – 2021",
+      "bullets": [
+        "Led development of internal products, modernized infrastructure, and improved delivery pipelines.",
+        "Built HGTAG, a React Native mobile app backed by .NET Core microservices hosted on Azure (published on iOS & Android).",
+        "Standardized CI/CD automation and introduced DDD/TDD best practices; delivered Power BI trainings."
+      ],
+      "stack": ".NET Core, React Native, React, Azure, Kubernetes, Identity Server, SQL Server"
+    },
+    {
+      "company": "Plain Concepts",
+      "title": "Full Stack Azure Developer",
+      "location": "Barcelona, Spain",
+      "date": "2018 – 2019",
+      "bullets": [
+        "Delivered client projects and served as technical lead for planning and reviews.",
+        "Developed React/Angular SPAs and .NET Core APIs, automated deployments via Azure DevOps.",
+        "Supported data visualization and AI-readiness pipelines for analytics teams."
+      ],
+      "stack": "React, Angular, .NET Core, Azure Functions, SQL Server, Azure DevOps"
+    },
+    {
+      "company": "Haufe Group",
+      "title": "Full Stack Developer (Mobility Team)",
+      "location": "Barcelona, Spain",
+      "date": "2017 – 2018",
+      "bullets": [
+        "Developed onboarding and mobile solutions using React Native and Node.js.",
+        "Managed Kubernetes infrastructure and MongoDB replicas in Azure; implemented CI/CD pipelines.",
+        "Collaborated in a cross-functional senior mobility team to define technical strategy and cloud adoption."
+      ],
+      "stack": "React Native, Node.js, React, Azure, Kubernetes, MongoDB, CI/CD"
+    },
+    {
+      "company": "Various / Earlier Roles",
+      "title": "Developer / Technical Lead",
+      "location": "Barcelona, Spain",
+      "date": "2005 – 2017",
+      "bullets": [
+        "Led enterprise development teams and built financial/legal sector systems using .NET Framework, WPF/WCF, and SQL Server (Diagonal Gest / Ancert).",
+        "Contributed to cloud adoption initiatives, API management, and modernization programs (Wolters Kluwer).",
+        "Delivered modern web and mobile projects for multiple clients, combining consultancy and product ownership roles."
+      ],
+      "stack": ".NET, Node.js, React, Angular, Azure, Kubernetes, MongoDB, SQL Server, Docker, CI/CD, WCF"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Gartner",
+      "title": "Senior Full Stack Developer",
+      "location": "Barcelona, Spain",
+      "date": "2021 – Present",
+      "bullets": [
+        "Develop and maintain scalable internal tools and services for Gartner’s global platforms.",
+        "Design and optimize high-throughput data pipelines and event-driven services using Kafka.",
+        "Integrate third party services to enrich content and provide meaningful insights for moderation and analytics."
+      ],
+      "stack": ".NET Core, Node.js (TypeScript), React, AWS (EKS, SNS, SQS), PostgreSQL, Kafka, ElasticSearch"
+    },
+    {
+      "company": "Engloba Tech",
+      "title": "Tech Lead / Senior Full Stack Developer",
+      "location": "Barcelona, Spain",
+      "date": "2019 – 2021",
+      "bullets": [
+        "Led development of internal products, modernized infrastructure, and improved delivery pipelines.",
+        "Built HGTAG, a React Native mobile app backed by .NET Core microservices hosted on Azure (published on iOS & Android).",
+        "Standardized CI/CD automation and introduced DDD/TDD best practices; delivered Power BI trainings."
+      ],
+      "stack": ".NET Core, React Native, React, Azure, Kubernetes, Identity Server, SQL Server"
+    }
+  ],
+  "skills": {
+    "languages": "C#, JavaScript, TypeScript, SQL",
+    "webBackend": "React, Angular, .NET Core, Node.js, REST APIs, Kafka, ElasticSearch",
+    "cloudDevops": "AWS, Azure, Docker, Terraform, Helm, GitHub Actions, Azure DevOps",
+    "observability": "Datadog, Splunk, Kibana, Grafana"
+  },
+  "education": [
+    { "name": "Technical Engineering in Management","school":"UOC","year":"2006","note":"Not finished"},
+    { "name": "CFGS – IT Systems Administration","school":"Educem, Granollers","year":"2005"},
+    { "name": "CFGS – Software Development","school":"Educem, Granollers","year":"2004"}
+  ],
+  "languages": ["Spanish: Native","Catalan: Native","English: Working proficiency (B2)"],
+  "header": {
+    "name": "Carlos Cañizares Estévez",
+    "title": "Ingeniero Backend Senior",
+    "location": "Barcelona, España",
+    "email": "c.canizaresestevez@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/carlos-ca%C3%B1izares-est%C3%A9vez-042a0633/",
+    "intro": "Full Stack Developer with 20 years of experience designing and building scalable, high-performance web and mobile applications using .NET Core, Node.js, and modern JavaScript frameworks (React, Angular). Strong expertise in AWS & Azure, CI/CD (GitHub Actions, Azure DevOps), and containerized deployments. Passionate about clean code, data-driven architecture, and agile collaboration. In the last year I've adopted IA agents tools to boost my productivity as engineer and improve the quality of what I deliver."
+  },
+  "projects": [
+    {
+      "title": "HGTAG Mobile App",
+      "description": "A React Native mobile application for HGTAG backed by .NET Core microservices. Published to iOS and Android stores; integrates analytics, authentication, and push notifications.",
+      "links": [
+        { "label": "Play Store (placeholder)", "href": "#" },
+        { "label": "App Store (placeholder)", "href": "#" }
+      ],
+      "stack": "React Native, .NET Core, Azure, SQL Server",
+      "thumbnail": null
+    },
+    {
+      "title": "Internal Tools Portal",
+      "description": "A suite of internal tools and admin dashboards to support content moderation, reporting and operational workflows. Built for scalability and observability.",
+      "links": [
+        { "label": "Live (internal)", "href": "#" }
+      ],
+      "stack": "React, Node.js, Kafka, PostgreSQL, AWS",
+      "thumbnail": null
+    },
+    {
+      "title": "Analytics Data Pipelines",
+      "description": "Designed and implemented high-throughput ETL and event-driven pipelines to process user and system events for analytics and reporting.",
+      "links": [],
+      "stack": "Kafka, AWS (EKS), PostgreSQL, ElasticSearch",
+      "thumbnail": null
+    }
+  ],
+  "contact": {
+    "email": "c.canizaresestevez@gmail.com"
+  }
+}

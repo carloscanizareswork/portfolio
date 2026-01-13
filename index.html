@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+  <title>Carlos Canizares — Portfolio</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <canvas id="page-matrix" aria-hidden="true"></canvas>
+  <header class="topbar">
+    <nav class="nav container">
+      <div class="nav-pill">
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Portafolio</a></li>
+          <li><a href="#journey">Trayectoria</a></li>
+          <li><a href="#education" data-i18n="nav.education">Educación</a></li>
+          <li><a href="#projects">Proyectos</a></li>
+          <li class="divider" aria-hidden="true"></li>
+          <li class="nav-action">
+            <button id="settings-toggle" aria-haspopup="true" aria-expanded="false" title="Settings">
+              <span class="settings-label">Settings</span>
+            </button>
+            <div id="settings-menu" class="settings-menu" role="menu" aria-hidden="true">
+              <div class="settings-section">
+                <div class="settings-title" data-i18n="settings.theme">Theme</div>
+                <button class="theme-option" data-theme="light">☀️ <span data-i18n="settings.light">Light</span></button>
+                <button class="theme-option" data-theme="dark">🌙 <span data-i18n="settings.dark">Dark</span></button>
+              </div>
+              <div class="settings-section">
+                <div class="settings-title" data-i18n="settings.language">Language</div>
+                <button class="lang-option" data-lang="en">🇬🇧 English</button>
+                <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+                <button class="lang-option" data-lang="ca">🏴 Català</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-inner">
+        <h1 id="hero-name">Loading...</h1>
+        <p id="hero-role" class="role">&nbsp;</p>
+        <p id="hero-intro" class="intro">&nbsp;</p>
+        <p id="hero-links" class="links"></p>
+      </div>
+    </section>
+
+    <section id="journey" class="container section">
+      <h2>Journey</h2>
+      <p class="section-lead">A short timeline of roles, learning, and milestones.</p>
+      <div id="journey-list" class="timeline" aria-live="polite"></div>
+    </section>
+
+    <!-- Projects removed: moved Education earlier -->
+
+    <section id="experience" class="container section">
+      <h2>Professional Experience</h2>
+      <div id="experience-list"></div>
+    </section>
+
+    <section id="skills" class="container section">
+      <h2>Technical Skills</h2>
+      <div id="skills-card" class="card"></div>
+    </section>
+
+
+    <section id="edu-lang" class="container section">
+      <div class="two-col-row">
+        <div class="col">
+          <h2>Education</h2>
+          <div id="education-list" class="card"></div>
+        </div>
+        <div class="col">
+          <h2>Languages</h2>
+          <div id="languages-list" class="card"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container section">
+      <h2>Contact</h2>
+      <p>Want to work together or see more? Email: <a href="mailto:c.canizaresestevez@gmail.com">c.canizaresestevez@gmail.com</a></p>
+    </section>
+
+    <footer class="container footer">
+      <p>© Carlos Canizares — Built with a lightweight static template.</p>
+    </footer>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

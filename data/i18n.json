@@ -1,0 +1,53 @@
+{
+  "en":{
+    "nav":{
+      "home":"Portfolio",
+      "journey":"Journey",
+      "education":"Education",
+      "contact":"Contact"
+    },
+    "settings":{
+      "theme":"Theme",
+      "light":"Light",
+      "dark":"Dark",
+      "language":"Language"
+    },
+    "hero":{
+      "intro":"Full Stack Developer with 20 years of experience designing and building scalable, high-performance web and mobile applications using .NET Core, Node.js, and modern JavaScript frameworks (React, Angular). Strong expertise in AWS & Azure, CI/CD (GitHub Actions, Azure DevOps), and containerized deployments. Passionate about clean code, data-driven architecture, and agile collaboration. In the last year I've adopted IA agents tools to boost my productivity as engineer and improve the quality of what I deliver."
+    }
+  },
+  "es":{
+    "nav":{
+      "home":"Portafolio",
+      "journey":"Trayectoria",
+      "education":"Educación",
+      "contact":"Contacto"
+    },
+    "settings":{
+      "theme":"Tema",
+      "light":"Light",
+      "dark":"Dark",
+      "language":"Idioma"
+    },
+    "hero":{
+      "intro":"Desarrollador Full Stack con 20 años de experiencia diseñando y construyendo aplicaciones web y móviles escalables y de alto rendimiento usando .NET Core, Node.js y frameworks JavaScript modernos (React, Angular). Fuerte experiencia en AWS y Azure, CI/CD (GitHub Actions, Azure DevOps) y despliegues en contenedores. Apasionado por código limpio, arquitectura orientada a datos y colaboración ágil. En el último año he adoptado herramientas de agentes IA para impulsar mi productividad como ingeniero y mejorar la calidad de lo que entrego."
+    }
+  },
+  "ca":{
+    "nav":{
+      "home":"Portfoli",
+      "journey":"Trajectòria",
+      "education":"Educació",
+      "contact":"Contacte"
+    },
+    "settings":{
+      "theme":"Tema",
+      "light":"Light",
+      "dark":"Dark",
+      "language":"Idioma"
+    },
+    "hero":{
+      "intro":"Desenvolupador Full Stack amb 20 anys d'experiència dissenyant i construint aplicacions web i mòbils escalables i d'alt rendiment usant .NET Core, Node.js i frameworks JavaScript moderns (React, Angular). Forta experiència en AWS i Azure, CI/CD (GitHub Actions, Azure DevOps) i desplegaments en contenidors. Apasionat pel codi net, arquitectura orientada a dades i col·laboració àgil. En l'últim any he adoptat eines d'agents IA per impulsar la meva productivitat com a enginyer i millorar la qualitat del que entrego."
+    }
+  }
+}
