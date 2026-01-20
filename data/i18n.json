@@ -13,8 +13,18 @@
       "language":"Language"
     },
     "hero":{
-      "intro":"Full Stack Developer with 20 years of experience designing and building scalable, high-performance web and mobile applications using .NET Core, Node.js, and modern JavaScript frameworks (React, Angular). Strong expertise in AWS & Azure, CI/CD (GitHub Actions, Azure DevOps), and containerized deployments. Passionate about clean code, data-driven architecture, and agile collaboration. In the last year I've adopted IA agents tools to boost my productivity as engineer and improve the quality of what I deliver."
-    }
+      "intro":"Full Stack Developer with 20 years of experience designing and building scalable, high-performance web and mobile applications using .NET Core, Node.js (TypeScript), and JavaScript frameworks. Strong expertise in AWS, Azure and GC, CI/CD, and containerized deployments. Passionate about clean code, data-driven architecture, and agile collaboration. Recently adopting AI agents to boost productivity and enhance quality of what I deliver."
+    },
+    "stories":[
+      {
+        "title":"Maximizing Context, Minimizing Costs",
+        "excerpt":"Exploring how to handle agent memory efficiently using summarization, vector database, and RAG to reduce OpenAI costs..."
+      },
+      {
+        "title":"The Future of Voice: WebRTC Agents",
+        "excerpt":"Building full-duplex voice agents using OpenAI Realtime API. Deep dive into ephemeral tokens and real-time audio..."
+      }
+    ]
   },
   "es":{
     "nav":{
@@ -31,7 +41,17 @@
     },
     "hero":{
       "intro":"Desarrollador Full Stack con 20 años de experiencia diseñando y construyendo aplicaciones web y móviles escalables y de alto rendimiento usando .NET Core, Node.js y frameworks JavaScript modernos (React, Angular). Fuerte experiencia en AWS y Azure, CI/CD (GitHub Actions, Azure DevOps) y despliegues en contenedores. Apasionado por código limpio, arquitectura orientada a datos y colaboración ágil. En el último año he adoptado herramientas de agentes IA para impulsar mi productividad como ingeniero y mejorar la calidad de lo que entrego."
-    }
+    },
+    "stories":[
+      {
+        "title":"Maximizando Contexto, Minimizando Costos",
+        "excerpt":"Explorando cómo manejar la memoria del agente de manera eficiente usando resúmenes, bases de datos vectoriales y RAG para reducir costos de OpenAI..."
+      },
+      {
+        "title":"El Futuro de la Voz: Agentes WebRTC",
+        "excerpt":"Construyendo agentes de voz full-duplex usando la API Realtime de OpenAI. Análisis profundo de tokens efímeros y audio en tiempo real..."
+      }
+    ]
   },
   "ca":{
     "nav":{
@@ -48,6 +68,16 @@
     },
     "hero":{
       "intro":"Desenvolupador Full Stack amb 20 anys d'experiència dissenyant i construint aplicacions web i mòbils escalables i d'alt rendiment usant .NET Core, Node.js i frameworks JavaScript moderns (React, Angular). Forta experiència en AWS i Azure, CI/CD (GitHub Actions, Azure DevOps) i desplegaments en contenidors. Apasionat pel codi net, arquitectura orientada a dades i col·laboració àgil. En l'últim any he adoptat eines d'agents IA per impulsar la meva productivitat com a enginyer i millorar la qualitat del que entrego."
-    }
+    },
+    "stories":[
+      {
+        "title":"Maximitzant Context, Minimitzant Costos",
+        "excerpt":"Explorant com gestionar la memòria de l'agent de manera eficient usant resums, bases de dades vectorials i RAG per reduir costos d'OpenAI..."
+      },
+      {
+        "title":"El Futur de la Veu: Agents WebRTC",
+        "excerpt":"Construint agents de veu full-duplex usant l'API Realtime d'OpenAI. Anàlisi profunda de tokens efímers i àudio en temps real..."
+      }
+    ]
   }
 }

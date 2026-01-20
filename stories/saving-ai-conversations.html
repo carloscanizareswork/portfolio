@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>Saving AI Conversations — Carlos Canizares</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .story-content {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+
+        .story-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .story-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.2em;
+            line-height: 1.15;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .story-header h1 {
+            background: linear-gradient(to right, #8b5cf6, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-meta {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+        }
+
+        .article-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .article-body h2 {
+            margin-top: 3rem;
+            color: var(--text-main);
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .article-body code {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .highlight-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            margin: 2.5rem 0;
+        }
+
+        .diagram-container {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        .diagram {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+        }
+
+        .flow-step {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid var(--accent-primary);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem auto;
+            max-width: 600px;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--accent-primary);
+            margin: 0.5rem 0;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        [data-theme="light"] .code-block {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .real-world-example {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            border-left: 4px solid var(--accent-primary);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            margin: 2.5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="page-matrix" aria-hidden="true"></canvas>
+
+    <main class="story-content">
+        <a href="../#stories" class="back-link">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+            Back to Stories
+        </a>
+
+        <header class="story-header">
+            <div class="story-meta">Architecture & AI • Jan 2026</div>
+            <h1>Maximizing Context, Minimizing Costs</h1>
+        </header>
+
+        <div class="article-body">
+            <p>As we build more sophisticated AI agents, we inevitably hit the "Infinity Context" wall. While modern
+                models like GPT-4 and Gemini Pro offer massive context windows, sending the entire history of a
+                long-running conversation in every prompt is both a performance killer and a budget drain.</p>
+
+            <p>Today, I want to explore how we can handle long-term agent memory efficiently by combining summarization,
+                vector storage, and automated synchronization.</p>
+
+            <h2>The Problem: The Token Inflation</h2>
+            <p>Every shared turn in a conversation repeats the previous turns. By the 50th message, you're paying for
+                the 1st through 49th messages over and over again. This logarithmic cost curve quickly becomes
+                unsustainable for enterprise-grade applications with thousands of active users.</p>
+
+            <div class="highlight-box">
+                <strong>The Goal:</strong> Maintain a "Sticky Memory" where the agent remembers the core facts of the
+                interaction without the overhead of the "as-is" raw transcript.
+            </div>
+
+            <h2>Strategy 1: Rolling Summarization</h2>
+            <p>The first line of defense is <strong>recursive summarization</strong>. Instead of saving the raw text, we
+                generate a structured summary of the key findings, user preferences, and decisions made so far. We run
+                this every 15 messages and store the result in Firebase.</p>
+            <p>At runtime, we only inject the <em>latest summary</em> plus the <em>last 15 raw messages</em> into the
+                context window. That keeps the prompt tight while still preserving recent nuance.</p>
+
+            <p>Key strategies to provide context to the agent:</p>
+            <ul>
+                <li><strong>System Messages:</strong> Inject conversation summaries and user preferences at the beginning</li>
+                <li><strong>Sliding Window:</strong> Keep only the last 15 messages in full detail</li>
+                <li><strong>Metadata Injection:</strong> Add structured data about user profile, past decisions, and facts</li>
+                <li><strong>Structured Summaries:</strong> Ask the model for a consistent markdown or JSON summary</li>
+            </ul>
+
+            <h2>Strategy 2: Single Vector File (RAG) for Infinite Recall</h2>
+            <p>For truly long dialogues, summarization isn't enough—details get lost. This is where <strong>Vector
+                    Storage</strong> comes in. Instead of managing many embeddings, we keep a <strong>single rolling
+                    summary document</strong> that is always up to date.</p>
+
+            <h3>The Practical Approach: One Rolling Summary File</h3>
+            <p>Here's the key shift: <strong>we keep only one vector file per conversation, not one file per 15 messages.</strong>
+                Every 15 messages we regenerate the summary, store it in Firebase, and replace the vector file in OpenAI
+                with the new content. That means the vector store always represents the latest consolidated summary.</p>
+
+            <div class="code-block">
+                <pre>
+// Generate updated structured markdown summary
+const summaryMarkdown = await generateSummary(messages);
+
+// Upload to OpenAI as a file
+const file = await openai.files.create({
+  file: Buffer.from(summaryMarkdown),
+  purpose: "assistants"
+});
+
+// Replace the previous file in the vector store
+await openai.vectorStores.files.delete(vectorStoreId, oldFileId);
+await openai.vectorStores.files.create(vectorStoreId, { file_id: file.id });
+                </pre>
+            </div>
+
+            <div class="diagram-container">
+                <h3>Simplified RAG Architecture</h3>
+                <div class="flow-step">
+                    📝 <strong>Step 1: Generate Summary</strong><br>
+                    Every 15 messages → AI creates an updated rolling summary
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">
+                    📤 <strong>Step 2: Replace Vector File</strong><br>
+                    Upload the new summary → replace the existing file
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">
+                    💾 <strong>Step 3: Re-index Automatically</strong><br>
+                    OpenAI re-chunks, re-embeds, and re-indexes the file
+                </div>
+                <div class="flow-arrow">⟲</div>
+                <div class="flow-step">
+                    🔍 <strong>Step 4: Automatic Retrieval</strong><br>
+                    User asks question → OpenAI searches vectors → Returns relevant context
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">
+                    🤖 <strong>Step 5: Response Generation</strong><br>
+                    Retrieved context + current message → LLM generates informed response
+                </div>
+            </div>
+
+            <p><strong>Why this approach wins:</strong></p>
+            <ul>
+                <li>✅ <strong>Simplicity:</strong> No manual embedding management—OpenAI does it all</li>
+                <li>✅ <strong>Human-readable:</strong> Markdown summaries can be reviewed/audited easily</li>
+                <li>✅ <strong>Automatic chunking:</strong> OpenAI handles optimal text segmentation</li>
+                <li>✅ <strong>Built-in retrieval:</strong> File search tool integrates seamlessly with assistants</li>
+                <li>✅ <strong>Less code:</strong> Fewer moving parts = fewer bugs</li>
+            </ul>
+
+            <p><strong>When to use manual embeddings instead:</strong> If you need vendor independence, use a custom vector DB (Pinecone, Supabase), or require fine-grained control over chunking strategies. For most applications, a single rolling summary file is the sweet spot between simplicity and effectiveness.</p>
+
+            <p>This approach allows us to maintain "infinite memory" while only using a fixed amount of tokens per request. The AI can recall specific details from conversations that happened weeks ago, without sending thousands of messages in every prompt.</p>
+
+            <h2>Automating the Workflow</h2>
+            <p>To make this seamless, we automate the process. A background task runs every 15 messages to:</p>
+            <ul>
+                <li>Retrieve the latest summary from Firebase</li>
+                <li>Fetch the last 15 messages and append to the summary prompt</li>
+                <li>Generate the new consolidated summary and store it back in Firebase</li>
+                <li>Replace the single vector file in OpenAI with the updated summary</li>
+            </ul>
+
+            <h3>AI-Powered Summarization Pipeline</h3>
+            <p>The summarization process itself is powered by AI. We use a dedicated prompt template that instructs the model to:</p>
+            <div class="code-block">
+                <pre>
+// Automated Summarization with AI
+const summaryPrompt = `
+Create a structured markdown summary of this conversation segment:
+
+## Conversation Context
+- User: ${userId}
+- Date Range: ${startDate} to ${endDate}
+- Messages: ${messageCount}
+
+## Requirements
+- Extract key facts, decisions, and user preferences
+- Identify important dates, names, and commitments
+- Highlight unresolved questions or pending actions
+- Maintain chronological order of critical events
+- Use clear markdown formatting (headers, lists, bold for emphasis)
+
+## Conversation Segment
+${recentMessages.join('\n---\n')}
+
+${previousSummary ? `## Previous Summary\n${previousSummary}` : ''}
+`;
+
+const summary = await openai.chat.completions.create({
+  model: "gpt-4-turbo",
+  messages: [{ role: "user", content: summaryPrompt }],
+  temperature: 0.2
+});
+
+// Returns markdown like:
+// # Conversation Summary
+// ## Key Preferences
+// - Prefers modern design
+// - Budget: $50k-75k
+// ## Decisions Made
+// - Venue: Riverside Manor (confirmed 2026-01-10)
+                </pre>
+            </div>
+            <p>This automated approach ensures consistency and reduces manual overhead. The AI identifies patterns and extracts actionable insights that would be tedious to capture manually. Plus, markdown format makes summaries debuggable and auditable.</p>
+
+            <h3>Cost Comparison</h3>
+            <div class="highlight-box">
+                <strong>OpenAI Vector Store Pricing (2026):</strong>
+                <ul>
+                    <li>Storage: $0.10/GB/day</li>
+                    <li>Embedding: Included (automatic)</li>
+                    <li>File Search: Free with Assistant API</li>
+                </ul>
+                <p><strong>Typical costs:</strong> A markdown summary file is 2-5KB. For 100 users with 10 summary files each = ~5MB = ~$0.0005/day. Negligible compared to token costs savings!</p>
+            </div>
+
+            <h2>Conclusion: Efficiency is the New Scale</h2>
+            <p>By moving away from "Send All" to "Retrieve Relevant," we reduce costs by up to 80% while increasing the
+                agent's perceived intelligence. The future of AI interaction isn't about larger windows—it's about
+                smarter memory management.</p>
+
+            <div class="real-world-example">
+                <h3>🎉 Real-World Application: Smart Weddings AI Agent</h3>
+                <p>We successfully implemented this exact architecture in our <strong>Smart Weddings</strong> project, where an AI wedding planning agent helps couples organize their big day. The agent needs to remember preferences discussed weeks ago (venue style, budget constraints, guest list details) while having natural conversations.</p>
+                <p><strong>Results achieved:</strong></p>
+                <ul>
+                    <li>Reduced token costs by 75% for long-running conversations (50+ messages)</li>
+                    <li>Agent accurately recalls venue preferences from 2 weeks prior</li>
+                    <li>Maintains context across multiple planning sessions over months</li>
+                    <li>Summarization pipeline runs nightly via Cloud Functions</li>
+                    <li>Vector search enables instant recall of specific vendor discussions</li>
+                </ul>
+                <p>The wedding planning domain is perfect for this approach because conversations are inherently long-term, detail-rich, and require perfect recall of user preferences across multiple sessions. Our clients love that the AI "remembers" everything without them having to repeat themselves.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container footer">
+        <div class="footer-content" style="justify-content: center;">
+            <p>© 2026 Carlos Canizares. Project Stories.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Controls Panel -->
+    <div class="floating-controls">
+        <button id="theme-toggle" class="control-btn" title="Toggle Theme" aria-label="Toggle Theme">
+            <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                </path>
+            </svg>
+            <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+        </button>
+        <button id="lang-toggle" class="control-btn" title="Switch Language">
+            <span class="lang-text">EN</span>
+        </button>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

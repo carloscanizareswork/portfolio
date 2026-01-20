@@ -1,14 +1,17 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <title>Carlos Canizares — Portfolio</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <canvas id="page-matrix" aria-hidden="true"></canvas>
   <header class="topbar">
@@ -16,28 +19,8 @@
       <div class="nav-pill">
         <ul class="nav-links">
           <li><a href="#home" class="active">Portafolio</a></li>
+          <li><a href="#ongoing-projects">Proyectos</a></li>
           <li><a href="#journey">Trayectoria</a></li>
-          <li><a href="#education" data-i18n="nav.education">Educación</a></li>
-          <li><a href="#projects">Proyectos</a></li>
-          <li class="divider" aria-hidden="true"></li>
-          <li class="nav-action">
-            <button id="settings-toggle" aria-haspopup="true" aria-expanded="false" title="Settings">
-              <span class="settings-label">Settings</span>
-            </button>
-            <div id="settings-menu" class="settings-menu" role="menu" aria-hidden="true">
-              <div class="settings-section">
-                <div class="settings-title" data-i18n="settings.theme">Theme</div>
-                <button class="theme-option" data-theme="light">☀️ <span data-i18n="settings.light">Light</span></button>
-                <button class="theme-option" data-theme="dark">🌙 <span data-i18n="settings.dark">Dark</span></button>
-              </div>
-              <div class="settings-section">
-                <div class="settings-title" data-i18n="settings.language">Language</div>
-                <button class="lang-option" data-lang="en">🇬🇧 English</button>
-                <button class="lang-option" data-lang="es">🇪🇸 Español</button>
-                <button class="lang-option" data-lang="ca">🏴 Català</button>
-              </div>
-            </div>
-          </li>
         </ul>
       </div>
     </nav>
@@ -49,7 +32,55 @@
         <h1 id="hero-name">Loading...</h1>
         <p id="hero-role" class="role">&nbsp;</p>
         <p id="hero-intro" class="intro">&nbsp;</p>
-        <p id="hero-links" class="links"></p>
+        <div id="hero-links" class="links"></div>
+      </div>
+      <a href="#stories" class="scroll-down">
+        <span>Scroll</span>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </a>
+    </section>
+
+    <section id="stories" class="container section">
+      <div class="section-header">
+        <h2>Last Stories</h2>
+        <div class="slider-nav">
+          <button class="slider-prev story-prev" aria-label="Previous Story">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button class="slider-next story-next" aria-label="Next Story">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="slider-container">
+        <div id="stories-grid" class="slider-track"></div>
+      </div>
+    </section>
+
+    <section id="ongoing-projects" class="container section">
+      <div class="section-header">
+        <h2>Projects</h2>
+        <div class="slider-nav">
+          <button class="slider-prev project-prev" aria-label="Previous Project">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button class="slider-next project-next" aria-label="Next Project">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="slider-container">
+        <div id="ongoing-projects-grid" class="slider-track"></div>
       </div>
     </section>
 
@@ -59,42 +90,51 @@
       <div id="journey-list" class="timeline" aria-live="polite"></div>
     </section>
 
-    <!-- Projects removed: moved Education earlier -->
 
-    <section id="experience" class="container section">
-      <h2>Professional Experience</h2>
-      <div id="experience-list"></div>
-    </section>
-
-    <section id="skills" class="container section">
-      <h2>Technical Skills</h2>
-      <div id="skills-card" class="card"></div>
-    </section>
-
-
-    <section id="edu-lang" class="container section">
-      <div class="two-col-row">
-        <div class="col">
-          <h2>Education</h2>
-          <div id="education-list" class="card"></div>
-        </div>
-        <div class="col">
-          <h2>Languages</h2>
-          <div id="languages-list" class="card"></div>
-        </div>
+    <section id="contact" class="container section contact-section">
+      <div class="contact-card">
+        <h2>Ready to collaborate?</h2>
+        <p>I'm available for freelance projects and technical consultancy. Let's build something amazing together.</p>
+        <a href="mailto:c.canizaresestevez@gmail.com" class="btn btn-large">
+          <span>Get in Touch</span>
+          <svg fill="none" stroke="currentColor" width="20" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
       </div>
     </section>
 
-    <section id="contact" class="container section">
-      <h2>Contact</h2>
-      <p>Want to work together or see more? Email: <a href="mailto:c.canizaresestevez@gmail.com">c.canizaresestevez@gmail.com</a></p>
-    </section>
-
     <footer class="container footer">
-      <p>© Carlos Canizares — Built with a lightweight static template.</p>
+      <div class="footer-content">
+        <p>© 2026 Carlos Canizares. All rights reserved.</p>
+
+        <div class="social-links-footer">
+          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+          <a href="https://github.com" target="_blank">GitHub</a>
+        </div>
+      </div>
     </footer>
+
+    <!-- Floating Controls Panel -->
+    <div class="floating-controls">
+      <button id="theme-toggle" class="control-btn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+          </path>
+        </svg>
+        <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+      </button>
+      <button id="lang-toggle" class="control-btn" title="Switch Language">
+        <span class="lang-text">EN</span>
+      </button>
+    </div>
   </main>
 
   <script src="js/main.js"></script>
 </body>
+
 </html>

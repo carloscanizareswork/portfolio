@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>The Future of Voice — Carlos Canizares</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+
+        // Adjust mermaid theme based on site theme
+        const updateMermaid = () => {
+            const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+            mermaid.initialize({ startOnLoad: false, theme: theme === 'dark' ? 'dark' : 'default' });
+            // Re-render if necessary (simplified for this use case)
+        };
+        window.addEventListener('storage', updateMermaid);
+    </script>
+    <style>
+        .story-content {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+
+        .story-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .story-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .story-header h1 {
+            background: linear-gradient(to right, #8b5cf6, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-meta {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+        }
+
+        .article-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .article-body h2 {
+            margin-top: 3rem;
+            color: var(--text-main);
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .article-body ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            font-weight: 300;
+        }
+
+        .diagram-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            overflow-x: auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .highlight-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            margin: 2.5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="page-matrix" aria-hidden="true"></canvas>
+
+    <main class="story-content">
+        <a href="../#stories" class="back-link">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+            Back to Stories
+        </a>
+
+        <header class="story-header">
+            <div class="story-meta">Real-time AI • Jan 2026</div>
+            <h1>The Future of Voice: Building Real-time Agents</h1>
+        </header>
+
+        <div class="article-body">
+            <p>Voice interaction has traditionally been a clunky, turn-based experience. You speak, you wait for
+                transcription, the model processes the text, and then a text-to-speech engine reads it back. This
+                "stop-and-go" flow kills the natural feeling of conversation.</p>
+
+            <p>With the advent of the <strong>OpenAI Realtime API</strong> over <strong>WebRTC</strong>, we can now
+                build full-duplex voice agents that feel human—responding instantly, handling interruptions, and
+                processing nuances in tone. Here is how we implemented this advanced architecture.</p>
+
+            <h2>The Core: Secure WebRTC Handshake</h2>
+            <p>The biggest challenge in building a voice agent is security and low latency. We can't expose our master
+                API keys to the browser, yet the browser needs to establish a direct "peer-to-peer" like connection with
+                OpenAI's servers to minimize lag.</p>
+
+            <p>The solution is a two-step handshake using <strong>Ephemeral Tokens</strong>:</p>
+
+            <div class="diagram-container">
+                <pre class="mermaid">
+sequenceDiagram
+    participant B as Browser (User)
+    participant S as App Server
+    participant O as OpenAI API
+
+    B->>S: Request Session
+    S->>O: Create Realtime Session (Secure Key)
+    O->>S: client_secret (Ephemeral Token)
+    S->>B: Return Ephemeral Token
+    Note over B,O: Direct WebRTC Link
+    B->>O: SDP Offer (via Ephemeral Token)
+    O-->>B: SDP Answer & Data Channel
+    B<->O: Full-Duplex Audio & Events
+        </pre>
+            </div>
+
+            <h2>Building Blocks: The Real-time Stack</h2>
+            <p>Our implementation relies on several key pillars to maintain a seamless experience:</p>
+
+            <ul>
+                <li><strong>WebRTC (Real-Time Communication):</strong> Instead of sending chunks of audio files over
+                    HTTP, we stream raw audio packets directly. This reduces latency from seconds to milliseconds.</li>
+                <li><strong>Ephemeral Tokens:</strong> A mission-critical security layer. Our server requests a 1-minute
+                    "client secret" from OpenAI, which the browser uses to authenticate the WebRTC session without ever
+                    seeing our permanent API key.</li>
+                <li><strong>The Data Channel (oai-events):</strong> Alongside the audio stream, a bidirectional data
+                    channel carries JSON events. This allows us to show live transcripts of what the user said and what
+                    the AI is currently "thinking" or saying.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Technical Insight:</strong> By using the <code>gpt-4o-realtime-preview</code> model, we bypass
+                the traditional whisper -> text -> speech pipeline, moving to a native multimodal flow where the model
+                understands and generates audio directly.
+            </div>
+
+            <h2>Stateful Context & Persistence</h2>
+            <p>Unlike standard API calls where you must resend the entire history, a Realtime session is
+                <strong>stateful</strong>. OpenAI maintains the context of the conversation for the duration of the
+                connection. However, once the user hangs up, that memory is gone.</p>
+
+            <p>To solve this, we implement a cleanup phase. When the WebRTC session closes, the client sends the final
+                transcript to our backend, which persists the conversation in high-performance storage (Firestore). This
+                allows the agent to "remember" the interaction next time the user logs in, creating a continuous
+                relationship.</p>
+
+            <h2>Conclusion</h2>
+            <p>Real-time voice agents are no longer science fiction. By mastering the handshake between WebRTC and
+                ephemeral security, we can build interfaces that disappear, leaving only a natural, fluid conversation.
+                It is not just about voice—it is about the end of the "Loading..." spinner for human-machine
+                interaction.</p>
+        </div>
+    </main>
+
+    <footer class="container footer">
+        <div class="footer-content" style="justify-content: center;">
+            <p>© 2026 Carlos Canizares. Engineering Stories.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Controls Panel -->
+    <div class="floating-controls">
+        <button id="theme-toggle" class="control-btn" title="Toggle Theme" aria-label="Toggle Theme">
+            <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                </path>
+            </svg>
+            <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+        </button>
+        <button id="lang-toggle" class="control-btn" title="Switch Language">
+            <span class="lang-text">EN</span>
+        </button>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
