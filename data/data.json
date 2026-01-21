@@ -1,86 +1,205 @@
 {
   "journey": [
     {
-      "company": "Gartner",
-      "title": "Senior Full Stack Developer",
+      "company": "Available",
+      "title": "Senior Full Stack Engineer",
       "location": "Barcelona, Spain",
-      "date": "2021 – 2026",
+      "date": "2026",
+      "project": "Working on projects that let me experience hands-on with LLM models and agentic workflows, while testing/comparing and improving how I use code agents like Cursor, Codex, Copilot, Antigravity, Claude and OpenCode.",
+      "project_es": "Trabajando en proyectos que me permiten colaborar de forma práctica con modelos LLM, flujos agentic y probar/mejorar el uso de agentes de código como Cursor, Codex, Copilot, Antigravity, Claude and OpenCode.",
+      "project_ca": "Treballant en projectes que em permeten col.laborar de manera practica amb models LLM, fluxos agentic i provar/millorar l'ús d'agents de codi com Cursor, Codex, Copilot, Antigravity, Claude and OpenCode.",
+      "role": "AI Engineer.",
+      "role_es": "Ingeniero de IA.",
+      "role_ca": "Enginyer d'IA.",
       "bullets": [
-        "Develop and maintain scalable internal tools and services for Gartner’s global platforms.",
-        "Design and optimize high-throughput data pipelines and event-driven services using Kafka.",
-        "Integrate third party services to enrich content and provide meaningful insights for moderation and analytics."
+        "Check my Last Stories section and also Projects to stay tunned on my last achievements, learning or releases."
       ],
-      "stack": ".NET Core, Node.js (TypeScript), React, AWS (EKS, SNS, SQS), PostgreSQL, Kafka, ElasticSearch"
+      "bullets_es": [
+        "Revisa la sección de Últimas historias y también Proyectos para estar al día de mis logros, aprendizajes o lanzamientos."
+      ],
+      "bullets_ca": [
+        "Revisa la seccio d'Ultimes histories i tambe Projectes per estar al dia dels meus assoliments, aprenentatges o llançaments."
+      ]
+    },
+    {
+      "company": "Gartner",
+      "title": "Senior Full Stack Engineer",
+      "location": "Barcelona, Spain - Remote",
+      "date": "2021 – 2025",
+      "project": "GDM reviews platform is composed of four brands/sites: \n \n GetApp, \n Software Advice, \n Capterra, \n Upcity.",
+      "project_es": "La plataforma de reviews GDM está compuesta por cuatro marcas/sitios: \n \n GetApp, \n Software Advice, \n Capterra, \n Upcity.",
+      "project_ca": "La plataforma de ressenyes GDM esta composta per quatre marques/llocs: \n \n GetApp, \n Software Advice, \n Capterra, \n Upcity.",
+      "role": "Architect and maintain high-throughput event-driven systems processing millions of customer reviews across Gartner's global platforms. Senior Full Stack Enginner in a 12 person multi national team",
+      "role_es": "Arquitecto y mantengo sistemas event-driven de alto rendimiento que procesan millones de reseñas en las plataformas globales de Gartner. Senior Full Stack Engineer en un equipo multinacional de 12 personas.",
+      "role_ca": "Arquitecto i mantinc sistemes event-driven d'alt rendiment que processen milions de ressenyes a les plataformes globals de Gartner. Senior Full Stack Engineer en un equip multinacional de 12 persones.",
+      "bullets": [
+        "Worked very close with Moderation team leaders in order to build recommendation engine. The engine was composed of third-party services for content moderation, sentiment analysis, and fraud detection to ensure review authenticity and quality.",
+        "Design data pipelines and Kafka streaming architectures in a cross functional team.",
+        "Got a promotion in 2024 from Senior to Senior Advanced (similar to lead)"
+      ],
+      "bullets_es": [
+        "Trabajé muy de cerca con los líderes del equipo de Moderación para construir un motor de recomendación. El motor integró servicios de terceros para moderación de contenido, análisis de sentimiento y detección de fraude, garantizando autenticidad y calidad.",
+        "Diseñé pipelines de datos y arquitecturas de streaming con Kafka en un equipo multifuncional.",
+        "Recibí una promoción en 2024 de Senior a Senior Advanced (similar a lead)."
+      ],
+      "bullets_ca": [
+        "Vaig treballar molt a prop amb els líders de Moderacio per construir un motor de recomanacio. El motor va integrar serveis de tercers per moderacio de contingut, analisi de sentiment i deteccio de frau, garantint autenticitat i qualitat.",
+        "Vaig dissenyar pipelines de dades i arquitectures de streaming amb Kafka en un equip multifuncional.",
+        "Vaig rebre una promocio el 2024 de Senior a Senior Advanced (similar a lead)."
+      ],
+      "stack": ".NET Core, Node.js (TypeScript), React, AWS (EKS, SNS, SQS), PostgreSQL, Kafka, ElasticSearch, OpenAI"
     },
     {
       "company": "Engloba Tech",
-      "title": "Tech Lead / Senior Full Stack Developer",
+      "title": "Chief Technology Officer",
       "location": "Barcelona, Spain",
       "date": "2019 – 2021",
+      "project": "Delivered multiple projects for different clients and sectors. We started from scratch. This is my closer experience to an startup.",
+      "project_es": "Entregué múltiples proyectos para distintos clientes y sectores. Empezamos desde cero. Esta fue mi experiencia más cercana a una startup.",
+      "project_ca": "Vaig entregar multiples projectes per a diferents clients i sectors. Vam comencar des de zero. Aquesta va ser la meva experiencia mes propera a una startup.",
+      "role": "This is my closer experience to be in a startup. I Led technical strategy and engineering teams across multiple client projects, delivering cloud-native applications on Azure infrastructure..",
+      "role_es": "Mi experiencia más cercana a una startup. Lideré la estrategia técnica y equipos de ingeniería en múltiples proyectos, entregando aplicaciones cloud-native sobre Azure.",
+      "role_ca": "La meva experiencia mes propera a una startup. Vaig liderar l'estrategia tecnica i equips d'enginyeria en multiples projectes, entregant aplicacions cloud-native sobre Azure.",
       "bullets": [
-        "Led development of internal products, modernized infrastructure, and improved delivery pipelines.",
-        "Built HGTAG, a React Native mobile app backed by .NET Core microservices hosted on Azure (published on iOS & Android).",
-        "Standardized CI/CD automation and introduced DDD/TDD best practices; delivered Power BI trainings."
+        "Architected and launched HGTAG mobile application using React Native and .NET Core microservices, successfully published to iOS App Store and Google Play.",
+        "Established engineering best practices including event-driven architecture, CI/CD pipelines, and testing strategies (DDD/TDD).",
+        "The team grew from 3 to 8 engineers during my tenure."
       ],
-      "stack": ".NET Core, React Native, React, Azure, Kubernetes, Identity Server, SQL Server"
+      "bullets_es": [
+        "Arquitecté y lancé la app móvil HGTAG con React Native y microservicios .NET Core, publicada en App Store y Google Play.",
+        "Establecí buenas prácticas de ingeniería incluyendo arquitectura event-driven, pipelines CI/CD y estrategias de testing (DDD/TDD).",
+        "El equipo creció de 3 a 8 ingenieros durante mi etapa."
+      ],
+      "bullets_ca": [
+        "Vaig arquitectar i llançar l'app mobil HGTAG amb React Native i microserveis .NET Core, publicada a App Store i Google Play.",
+        "Vaig establir bones practiques d'enginyeria incloent arquitectura event-driven, pipelines CI/CD i estrategies de testing (DDD/TDD).",
+        "L'equip va creixer de 3 a 8 enginyers durant la meva etapa."
+      ],
+      "stack": ".NET Core, React Native, React, Azure, Kubernetes, Identity Server, SQL Server, Event-Driven Architecture"
     },
     {
       "company": "Plain Concepts",
-      "title": "Full Stack Azure Developer",
+      "title": "Senior Full Stack Engineer",
       "location": "Barcelona, Spain",
       "date": "2018 – 2019",
+      "project": "Zetes - Supply Chain \n Tekman - Thinko (Learning Platform)",
+      "project_es": "Zetes - Supply Chain \n Tekman - Thinko (Plataforma de aprendizaje)",
+      "project_ca": "Zetes - Supply Chain \n Tekman - Thinko (Plataforma d'aprenentatge)",
+      "role": "Joined a team of Microsoft community leaders and Azure MVPs, working as Senior full stack engineer specialized in Azure Cloud with direct communication with stakeholders.",
+      "role_es": "Me uní a un equipo de líderes de la comunidad Microsoft y MVPs de Azure, trabajando como Senior full stack engineer especializado en Azure Cloud con comunicación directa con stakeholders.",
+      "role_ca": "Em vaig unir a un equip de liders de la comunitat Microsoft i MVPs d'Azure, treballant com a Senior full stack engineer especialitzat en Azure Cloud amb comunicacio directa amb stakeholders.",
       "bullets": [
-        "Delivered client projects and served as technical lead for planning and reviews.",
-        "Developed React/Angular SPAs and .NET Core APIs, automated deployments via Azure DevOps.",
-        "Supported data visualization and AI-readiness pipelines for analytics teams."
+        "Participated in several community events azure/microsoft oriented as speaker or implementing workshop's. (Global Azure Barcelona, Gapand Andorra, Code Motion Madrid, Other local meetups)"
       ],
-      "stack": "React, Angular, .NET Core, Azure Functions, SQL Server, Azure DevOps"
+      "bullets_es": [
+        "Participé en varios eventos de comunidad Azure/Microsoft como ponente o impartiendo workshops (Global Azure Barcelona, Gapand Andorra, Code Motion Madrid y meetups locales)."
+      ],
+      "bullets_ca": [
+        "Vaig participar en diversos esdeveniments de la comunitat Azure/Microsoft com a ponent o impartint workshops (Global Azure Barcelona, Gapand Andorra, Code Motion Madrid i meetups locals)."
+      ],
+      "stack": "React, Angular, .NET Core, Azure Functions, SQL Server, Azure DevOps, Power BI"
     },
     {
       "company": "Haufe Group",
-      "title": "Full Stack Developer (Mobility Team)",
+      "title": "Senior Full Stack Engineer",
       "location": "Barcelona, Spain",
       "date": "2017 – 2018",
+      "project": "Onboarding solution for new employees. The solution was composed of an mobile app and a cms backoffice",
+      "project_es": "Solución de onboarding para nuevos empleados. La solución incluía una app móvil y un backoffice CMS.",
+      "project_ca": "Solucio d'onboarding per a nous empleats. La solucio incloia una app mobil i un backoffice CMS.",
+      "role": "Full-stack engineer with strong weight in devops on a 4-person plain team.",
+      "role_es": "Ingeniero full-stack con fuerte peso en DevOps en un equipo plano de 4 personas.",
+      "role_ca": "Enginyer full-stack amb fort pes en DevOps en un equip pla de 4 persones.",
       "bullets": [
-        "Developed onboarding and mobile solutions using React Native and Node.js.",
-        "Managed Kubernetes infrastructure and MongoDB replicas in Azure; implemented CI/CD pipelines.",
-        "Collaborated in a cross-functional senior mobility team to define technical strategy and cloud adoption."
+        "Architected complete solution including mobile app, web-based CMS, and cloud infrastructure orchestrated with Kubernetes on Azure.",
+        "Owned DevOps and CI/CD strategy, implementing automated pipelines with App Center and container orchestration."
       ],
-      "stack": "React Native, Node.js, React, Azure, Kubernetes, MongoDB, CI/CD"
+      "bullets_es": [
+        "Arquitecté la solución completa con app móvil, CMS web e infraestructura cloud orquestada con Kubernetes en Azure.",
+        "Lideré la estrategia DevOps y CI/CD, implementando pipelines automatizados con App Center y orquestación de contenedores."
+      ],
+      "bullets_ca": [
+        "Vaig arquitectar la solucio completa amb app mobil, CMS web i infraestructura cloud orquestrada amb Kubernetes a Azure.",
+        "Vaig liderar l'estrategia DevOps i CI/CD, implementant pipelines automatitzats amb App Center i orquestracio de contenidors."
+      ],
+      "stack": "React Native, Node.js, React, Azure, Kubernetes, MongoDB, Docker, App Center, Azure Functions"
     },
     {
-      "company": "Various / Earlier Roles",
-      "title": "Developer / Technical Lead",
+      "company": "Ancert",
+      "title": "Product Owner",
       "location": "Barcelona, Spain",
-      "date": "2005 – 2017",
+      "date": "2015 – 2017",
+      "project": "AGN, desktop app build with WPF and Java Web Services (SOAP), specific for notaries.",
+      "project_es": "AGN, aplicación desktop creada con WPF y servicios web Java (SOAP), específica para notarías.",
+      "project_ca": "AGN, aplicacio desktop creada amb WPF i serveis web Java (SOAP), especifica per a notaries.",
+      "role": "Led 4-person engineering team developing desktop applications for the notarial sector, serving as Product Owner of the financial module of the app.",
+      "role_es": "Lideré un equipo de 4 ingenieros desarrollando aplicaciones desktop para el sector notarial, como Product Owner del módulo financiero de la app.",
+      "role_ca": "Vaig liderar un equip de 4 enginyers desenvolupant aplicacions desktop per al sector notarial, com a Product Owner del modul financer de l'app.",
       "bullets": [
-        "Led enterprise development teams and built financial/legal sector systems using .NET Framework, WPF/WCF, and SQL Server (Diagonal Gest / Ancert).",
-        "Contributed to cloud adoption initiatives, API management, and modernization programs (Wolters Kluwer).",
-        "Delivered modern web and mobile projects for multiple clients, combining consultancy and product ownership roles."
+        "After deep dive analysis I was able to detect big amount of unnecesary request/response between client and server, that were making the app perform slow. After this analysis and posterior work with the eng team we were able to reduce time loading and increase significantly performance on the app "
       ],
-      "stack": ".NET, Node.js, React, Angular, Azure, Kubernetes, MongoDB, SQL Server, Docker, CI/CD, WCF"
+      "bullets_es": [
+        "Tras un análisis profundo detecté un gran número de peticiones innecesarias entre cliente y servidor que ralentizaban la app. Después del trabajo con el equipo, reducimos tiempos de carga y mejoramos significativamente el rendimiento."
+      ],
+      "bullets_ca": [
+        "Despres d'una analisi profunda vaig detectar moltes peticions innecessaries entre client i servidor que alentien l'app. Despres del treball amb l'equip, vam reduir temps de carrega i vam millorar significativament el rendiment."
+      ],
+      "stack": ".NET Framework, WPF, SQL Server, Product Management"
+    },
+    {
+      "company": "Diagonal Gest",
+      "title": "Developer → Technical Lead → Team Coordinator",
+      "location": "Barcelona, Spain",
+      "date": "2005 – 2015",
+      "project": "Custom desktop and web applications all related with mortgage market and real state in general.",
+      "project_es": "Aplicaciones desktop y web relacionadas con el mercado hipotecario y el real estate en general.",
+      "project_ca": "Aplicacions desktop i web relacionades amb el mercat hipotecari i el real estate en general.",
+      "role": "Evolved through multiple roles including developer, functional analyst, and team coordinator over a transformative 10-year tenure.",
+      "role_es": "Evolucioné por varios roles incluyendo desarrollador, analista funcional y coordinador de equipo durante 10 años.",
+      "role_ca": "Vaig evolucionar per diversos rols incloent desenvolupador, analista funcional i coordinador d'equip durant 10 anys.",
+      "bullets": [
+        "Led modernization initiative migrating legacy codebase to .NET ecosystem (WCF, WPF, WebForms, and eventually MVC).",
+        "Grew team from solo developer + IT Director to 10-member organization, establishing development best practices and technical culture."
+      ],
+      "bullets_es": [
+        "Lideré la modernización migrando el codebase legacy al ecosistema .NET (WCF, WPF, WebForms y luego MVC).",
+        "Hice crecer el equipo de un desarrollador + director IT a una organización de 10 personas, estableciendo buenas prácticas y cultura técnica."
+      ],
+      "bullets_ca": [
+        "Vaig liderar la modernitzacio migrant el codebase legacy a l'ecosistema .NET (WCF, WPF, WebForms i despres MVC).",
+        "Vaig fer creixer l'equip d'un desenvolupador + director IT a una organitzacio de 10 persones, establint bones practiques i cultura tecnica."
+      ],
+      "stack": "VB6, ASP, .NET Framework, WCF, WPF, WebForms, ASP.NET MVC, SQL Server, Team Leadership"
     }
   ],
   "ongoingProjects": [
     {
       "title": "Arion",
       "description": "AI-native eCRD platform for clinical studies. Streamline study setup, data capture, and analysis with AI-powered protocol extraction, real-time validation, audit-ready governance, intelligent variable detection, and integrated analytics.",
+      "description_es": "Plataforma eCRD nativa en IA para estudios clínicos. Agiliza la configuración, captura y análisis de datos con extracción de protocolos, validación en tiempo real, gobernanza lista para auditoría, detección inteligente de variables y analítica integrada.",
+      "description_ca": "Plataforma eCRD nativa en IA per a estudis clínics. Agilitza la configuracio, captura i analisi de dades amb extraccio de protocols, validacio en temps real, governanca preparada per a auditoria, deteccio intel.ligent de variables i analitica integrada.",
       "stack": "React, Python, PostgreSQL, React-Plotty, OpenAI, Audit Trails",
       "status": "Beta",
       "links": [],
+      "url": "https://arion-nwoai67fea-ew.a.run.app/",
       "thumbnail": "assets/arion.png"
     },
     {
       "title": "Smart Weddings",
       "description": "AI-powered wedding planning platform with automated vendor onboarding, a personalized virtual assistant for each event, and a professional space designer for real-time layouts. Couples and venues get instant answers and full control of seating and space planning.",
+      "description_es": "Plataforma de planificación de bodas impulsada por IA con onboarding automático de proveedores, asistente virtual personalizado para cada evento y diseñador profesional de espacios en tiempo real. Parejas y lugares obtienen respuestas instantáneas y control total de seating y planificación de espacios.",
+      "description_ca": "Plataforma de planificacio de casaments impulsada per IA amb onboarding automatic de proveidors, assistent virtual personalitzat per a cada esdeveniment i dissenyador professional d'espais en temps real. Parelles i espais obtenen respostes instantanies i control total de seating i planificacio d'espais.",
       "stack": "React, Next, Firebase, OpenAI, Voice Agent/WebRTC, RAG",
       "status": "In Development",
       "links": [],
+      "url": "https://smart-weddings-qmzjea3ufq-uc.a.run.app/",
       "thumbnail": "assets/smart-weddings.png"
     },
     {
       "title": "AI Flow Manager",
       "description": "An orchestration layer for AI agents that manages workflows, approvals, and real-time observability across teams.",
+      "description_es": "Capa de orquestación para agentes de IA que gestiona flujos de trabajo, aprobaciones y observabilidad en tiempo real entre equipos.",
+      "description_ca": "Capa d'orquestracio per a agents d'IA que gestiona fluxos de treball, aprovacions i observabilitat en temps real entre equips.",
       "stack": "Node.js, Python, Redis, OpenTelemetry, React",
       "status": "Prototype",
       "hidden": true,
@@ -90,6 +209,8 @@
     {
       "title": "Collection Car Manager",
       "description": "A specialized platform for managing high-value car collections, tracking maintenance, and monitoring valuation trends.",
+      "description_es": "Plataforma especializada para gestionar colecciones de coches de alto valor, seguimiento de mantenimiento y monitorización de tendencias de tasación.",
+      "description_ca": "Plataforma especialitzada per gestionar col.leccions de cotxes d'alt valor, seguiment de manteniment i monitoritzacio de tendencies de taxacio.",
       "stack": ".NET Core, React, SQL Server, Azure",
       "status": "Research & Development",
       "hidden": true,
@@ -130,7 +251,7 @@
     "name": "Carlos Cañizares",
     "title": "Senior Full Stack Engineer",
     "location": "Barcelona, España & Remote",
-    "email": "c.canizaresestevez@gmail.com",
+    "email": "carlos.canizares.work@gmail.com",
     "linkedin": "https://www.linkedin.com/in/carlos-ca%C3%B1izares-est%C3%A9vez-042a0633/",
     "cv": "assets/Carlos Cañizares Estévez-2026.pdf",
     "intro": "Full Stack Developer with 20 years of experience designing and building scalable, high-performance web and mobile applications using .NET Core, Node.js (TypeScript), and JavaScript frameworks. Strong expertise in AWS, Azure and GC, CI/CD, and containerized deployments. Passionate about clean code, data-driven architecture, and agile collaboration. Recently adopting AI agents to boost productivity and enhance quality of what I deliver."

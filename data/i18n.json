@@ -2,6 +2,8 @@
   "en":{
     "nav":{
       "home":"Portfolio",
+      "stories":"Stories",
+      "projects":"Projects",
       "journey":"Journey",
       "education":"Education",
       "contact":"Contact"
@@ -14,6 +16,21 @@
     },
     "hero":{
       "intro":"Full Stack Developer with 20 years of experience designing and building scalable, high-performance web and mobile applications using .NET Core, Node.js (TypeScript), and JavaScript frameworks. Strong expertise in AWS, Azure and GC, CI/CD, and containerized deployments. Passionate about clean code, data-driven architecture, and agile collaboration. Recently adopting AI agents to boost productivity and enhance quality of what I deliver."
+    },
+    "contact":{
+      "title":"Ready to collaborate?",
+      "body":"I'm available. Let's build something amazing together.",
+      "cta":"Get in Touch"
+    },
+    "sections":{
+      "stories":"Last Stories",
+      "projects":"Projects",
+      "journeyTitle":"Journey",
+      "journeyLead":"A short timeline of roles, learning, and milestones."
+    },
+    "journeyLabels":{
+      "projectsRole":"Projects & Role",
+      "achievements":"Achievements"
     },
     "stories":[
       {
@@ -29,6 +46,8 @@
   "es":{
     "nav":{
       "home":"Portafolio",
+      "stories":"Historias",
+      "projects":"Proyectos",
       "journey":"Trayectoria",
       "education":"Educación",
       "contact":"Contacto"
@@ -40,7 +59,22 @@
       "language":"Idioma"
     },
     "hero":{
-      "intro":"Desarrollador Full Stack con 20 años de experiencia diseñando y construyendo aplicaciones web y móviles escalables y de alto rendimiento usando .NET Core, Node.js y frameworks JavaScript modernos (React, Angular). Fuerte experiencia en AWS y Azure, CI/CD (GitHub Actions, Azure DevOps) y despliegues en contenedores. Apasionado por código limpio, arquitectura orientada a datos y colaboración ágil. En el último año he adoptado herramientas de agentes IA para impulsar mi productividad como ingeniero y mejorar la calidad de lo que entrego."
+      "intro":"Desarrollador Full Stack con 20 años de experiencia diseñando y construyendo aplicaciones web y móviles escalables y de alto rendimiento usando .NET Core, Node.js (TypeScript) y frameworks de JavaScript. Fuerte experiencia en AWS, Azure y GC, CI/CD y despliegues en contenedores. Apasionado por el código limpio, la arquitectura basada en datos y la colaboración ágil. Recientemente estoy adoptando agentes de IA para impulsar mi productividad y mejorar la calidad de lo que entrego."
+    },
+    "contact":{
+      "title":"¿Listo para colaborar?",
+      "body":"Estoy disponible. Construyamos algo increíble juntos.",
+      "cta":"Contactar"
+    },
+    "sections":{
+      "stories":"Últimas historias",
+      "projects":"Proyectos",
+      "journeyTitle":"Trayectoria",
+      "journeyLead":"Un breve recorrido por roles, aprendizajes y hitos."
+    },
+    "journeyLabels":{
+      "projectsRole":"Proyectos y rol",
+      "achievements":"Logros"
     },
     "stories":[
       {
@@ -56,6 +90,8 @@
   "ca":{
     "nav":{
       "home":"Portfoli",
+      "stories":"Històries",
+      "projects":"Projectes",
       "journey":"Trajectòria",
       "education":"Educació",
       "contact":"Contacte"
@@ -67,7 +103,22 @@
       "language":"Idioma"
     },
     "hero":{
-      "intro":"Desenvolupador Full Stack amb 20 anys d'experiència dissenyant i construint aplicacions web i mòbils escalables i d'alt rendiment usant .NET Core, Node.js i frameworks JavaScript moderns (React, Angular). Forta experiència en AWS i Azure, CI/CD (GitHub Actions, Azure DevOps) i desplegaments en contenidors. Apasionat pel codi net, arquitectura orientada a dades i col·laboració àgil. En l'últim any he adoptat eines d'agents IA per impulsar la meva productivitat com a enginyer i millorar la qualitat del que entrego."
+      "intro":"Desenvolupador Full Stack amb 20 anys d'experiència dissenyant i construint aplicacions web i mòbils escalables i d'alt rendiment fent servir .NET Core, Node.js (TypeScript) i frameworks de JavaScript. Forta experiència en AWS, Azure i GC, CI/CD i desplegaments en contenidors. Apassionat pel codi net, l'arquitectura basada en dades i la col·laboració àgil. Recentment estic adoptant agents d'IA per impulsar la meva productivitat i millorar la qualitat del que entrego."
+    },
+    "contact":{
+      "title":"Preparat per col.laborar?",
+      "body":"Estic disponible. Construim alguna cosa increible plegats.",
+      "cta":"Contactar"
+    },
+    "sections":{
+      "stories":"Últimes històries",
+      "projects":"Projectes",
+      "journeyTitle":"Trajectòria",
+      "journeyLead":"Un breu recorregut per rols, aprenentatges i fites."
+    },
+    "journeyLabels":{
+      "projectsRole":"Projectes i rol",
+      "achievements":"Assoliments"
     },
     "stories":[
       {

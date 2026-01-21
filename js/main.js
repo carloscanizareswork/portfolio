@@ -39,12 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch(`${prefix}data/data.json`)
       if (!res.ok) throw new Error('Failed to load data')
       const data = await res.json()
+      window.__data = data
       window.__header = data.header || {}
 
       // Only render these sections if elements exist (main page)
+      const savedLang = localStorage.getItem('site-lang') || 'en'
       if (document.getElementById('hero-name')) renderHeader(data.header || {})
-      if (document.getElementById('ongoing-projects-grid')) renderOngoingProjects(data.ongoingProjects || [])
-      if (document.getElementById('journey-list')) renderJourney(data.journey || [])
+      if (document.getElementById('ongoing-projects-grid')) renderOngoingProjects(data.ongoingProjects || [], savedLang)
+      if (document.getElementById('journey-list')) renderJourney(data.journey || [], savedLang)
       if (document.getElementById('stories-grid')) renderStories(data.stories || [], prefix)
       // renderContact(data.contact || {}) // Skip for now to avoid breaking the manual card
 
@@ -75,6 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // hero intro
     const intro = set.hero && set.hero.intro
     if (intro) { const el = document.getElementById('hero-intro'); if (el) el.textContent = intro }
+    if (window.__data) {
+      if (document.getElementById('ongoing-projects-grid')) renderOngoingProjects(window.__data.ongoingProjects || [], lang)
+      if (document.getElementById('journey-list')) renderJourney(window.__data.journey || [], lang)
+    }
   }
 
   function initSettings() {
@@ -88,6 +94,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('site-lang') || 'en'
     applyTranslations(savedLang)
     updateLangBtn(savedLang)
+
+    // Background Toggle
+    const bgBtn = document.getElementById('bg-toggle')
+    if (bgBtn) {
+      const savedBg = localStorage.getItem('bg-enabled')
+      const enabled = savedBg === 'true'
+      setBackgroundEnabled(enabled)
+      updateBgBtn(bgBtn, enabled)
+      bgBtn.addEventListener('click', () => {
+        const next = !window.__bgEnabled
+        setBackgroundEnabled(next)
+        updateBgBtn(bgBtn, next)
+      })
+    }
 
     // Theme Toggle
     const themeBtn = document.getElementById('theme-toggle')
@@ -125,6 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) el.textContent = lang.toUpperCase()
   }
 
+  function updateBgBtn(btn, enabled) {
+    btn.classList.toggle('is-off', !enabled)
+    btn.title = enabled ? 'Disable Background' : 'Enable Background'
+  }
+
+  function setBackgroundEnabled(enabled) {
+    window.__bgEnabled = enabled
+    localStorage.setItem('bg-enabled', enabled ? 'true' : 'false')
+  }
+
   function applyTheme(name) {
     if (name === 'light') {
       document.documentElement.setAttribute('data-theme', 'light')
@@ -154,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctaBtn = document.createElement('a');
     ctaBtn.href = "#contact";
     ctaBtn.className = "btn btn-primary btn-glow";
-    ctaBtn.innerText = "Hire Me";
+    ctaBtn.innerText = "Collaborate";
 
     // Secondary / Socials container
     const socialContainer = document.createElement('div');
@@ -190,23 +220,30 @@ document.addEventListener('DOMContentLoaded', () => {
     linksEl.appendChild(socialContainer);
   }
 
-  function renderOngoingProjects(items) {
+  function renderOngoingProjects(items, lang = 'en') {
     const track = document.getElementById('ongoing-projects-grid')
     if (!track || !items) return
     const visibleItems = items.filter(p => !p.hidden)
-    track.innerHTML = visibleItems.map(p => `
-        <div class="card project-card">
+    track.innerHTML = visibleItems.map(p => {
+      let desc = p.description
+      if (lang === 'es' && p.description_es) desc = p.description_es
+      if (lang === 'ca' && p.description_ca) desc = p.description_ca
+      const href = p.url || (p.links && p.links[0] && p.links[0].href) || '#'
+      const target = href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''
+      return `
+        <a class="card project-card clickable-card" href="${href}"${target}>
             ${p.thumbnail ? `<img src="${p.thumbnail}" alt="${p.title}" class="project-thumb">` : '<div class="project-thumb-placeholder"></div>'}
             <div class="card-content">
                 <h3>${p.title}</h3>
-                <p class="project-desc">${p.description}</p>
+                <p class="project-desc">${desc}</p>
                 <div class="taglist">${p.stack.split(',').map(s => `<span class="tag">${s.trim()}</span>`).join('')}</div>
                 <div class="project-links">
                     ${(p.links || []).map(l => `<a href="${l.href}" class="link-btn">${l.label}</a>`).join('')}
                 </div>
             </div>
-        </div>
-    `).join('')
+        </a>
+    `
+    }).join('')
 
     initSlider(track, visibleItems.length, '.project-prev', '.project-next')
   }
@@ -216,13 +253,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!grid || !stories) return;
 
     grid.innerHTML = stories.map(story => `
-        <article class="story-card card">
+        <a class="story-card card clickable-card" href="${story.link}">
             ${story.coverImage ? `<div class="story-cover" style="background-image:url('${prefix}${story.coverImage}');"></div>` : ''}
             <div class="story-date">${story.date}</div>
-            <h3><a href="${story.link}">${story.title}</a></h3>
+            <h3>${story.title}</h3>
             <p>${story.excerpt}</p>
-            <a href="${story.link}" class="read-more">Read article &rarr;</a>
-        </article>
+            <span class="read-more">Read article &rarr;</span>
+        </a>
     `).join('');
 
     initSlider(grid, stories.length, '.story-prev', '.story-next')
@@ -308,7 +345,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  function renderJourney(journey) {
+  function appendWithLinks(el, text) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g
+    let lastIndex = 0
+    text.replace(urlRegex, (match, url, offset) => {
+      if (offset > lastIndex) {
+        appendWithLineBreaks(el, text.slice(lastIndex, offset))
+      }
+      const link = document.createElement('a')
+      link.href = url
+      link.target = '_blank'
+      link.rel = 'noopener'
+      link.textContent = url
+      el.appendChild(link)
+      lastIndex = offset + match.length
+      return match
+    })
+    if (lastIndex < text.length) {
+      appendWithLineBreaks(el, text.slice(lastIndex))
+    }
+  }
+
+  function appendWithLineBreaks(el, text) {
+    const parts = text.split('\n')
+    parts.forEach((part, idx) => {
+      if (part.length) {
+        el.appendChild(document.createTextNode(part))
+      }
+      if (idx < parts.length - 1) {
+        el.appendChild(document.createElement('br'))
+      }
+    })
+  }
+
+  function renderJourney(journey, lang = 'en') {
     const container = document.getElementById('journey-list')
     if (!container) return
     container.innerHTML = ''
@@ -361,11 +431,64 @@ document.addEventListener('DOMContentLoaded', () => {
         meta.textContent = `${entry.location} | ${entry.date}`
         wrap.appendChild(title)
         wrap.appendChild(meta)
-        if (entry.bullets && entry.bullets.length) {
-          const ul = document.createElement('ul')
-          entry.bullets.forEach(b => { const li = document.createElement('li'); li.textContent = b; ul.appendChild(li) })
-          wrap.appendChild(ul)
+        const columns = document.createElement('div')
+        columns.className = 'journey-columns'
+
+        const projectCol = document.createElement('div')
+        projectCol.className = 'journey-col'
+        const labels = (window.__i18n && window.__i18n[lang] && window.__i18n[lang].journeyLabels)
+          || (window.__i18n && window.__i18n.en && window.__i18n.en.journeyLabels)
+          || { projectsRole: 'Projects & Role', achievements: 'Achievements' }
+        const projectTitle = document.createElement('div')
+        projectTitle.className = 'journey-col-title'
+        projectTitle.textContent = labels.projectsRole
+        projectCol.appendChild(projectTitle)
+        const projectBody = document.createElement('p')
+        let projectText = entry.project
+        if (lang === 'es' && entry.project_es) projectText = entry.project_es
+        if (lang === 'ca' && entry.project_ca) projectText = entry.project_ca
+        appendWithLinks(projectBody, projectText || 'Project summary placeholder.')
+        projectCol.appendChild(projectBody)
+        const projectSeparator = document.createElement('div')
+        projectSeparator.className = 'journey-separator'
+        projectSeparator.textContent = '------------'
+        projectCol.appendChild(projectSeparator)
+        const roleBody = document.createElement('p')
+        let roleText = entry.role
+        if (lang === 'es' && entry.role_es) roleText = entry.role_es
+        if (lang === 'ca' && entry.role_ca) roleText = entry.role_ca
+        appendWithLinks(roleBody, roleText || 'Role summary placeholder.')
+        projectCol.appendChild(roleBody)
+
+        const achievementsCol = document.createElement('div')
+        achievementsCol.className = 'journey-col'
+        const achievementsTitle = document.createElement('div')
+        achievementsTitle.className = 'journey-col-title'
+        achievementsTitle.textContent = labels.achievements
+        achievementsCol.appendChild(achievementsTitle)
+        let bullets = entry.bullets
+        if (lang === 'es' && entry.bullets_es) bullets = entry.bullets_es
+        if (lang === 'ca' && entry.bullets_ca) bullets = entry.bullets_ca
+        if (bullets && bullets.length) {
+          const list = document.createElement('div')
+          list.className = 'journey-achievements'
+          bullets.forEach((b, index) => {
+            const item = document.createElement('p')
+            item.textContent = b
+            list.appendChild(item)
+            if (index < bullets.length - 1) {
+              const separator = document.createElement('div')
+              separator.className = 'journey-separator'
+              separator.textContent = '------------'
+              list.appendChild(separator)
+            }
+          })
+          achievementsCol.appendChild(list)
         }
+
+        columns.appendChild(projectCol)
+        columns.appendChild(achievementsCol)
+        wrap.appendChild(columns)
         if (entry.stack) {
           const s = document.createElement('div')
           s.className = 'small'
@@ -409,6 +532,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     if (!ctx) return
+    const savedBg = localStorage.getItem('bg-enabled')
+    window.__bgEnabled = savedBg === 'true'
     const colorParser = document.createElement('canvas').getContext('2d')
     function normalizeColor(str) {
       if (!str) return '#6c5ce7'
@@ -439,12 +564,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let drops = []
 
     function createDrop() {
+      const fontSize = 14 + Math.random() * 6
       return {
         x: Math.random() * width,
         y: Math.random() * height,
         len: height * 0.25 + Math.random() * 80,
         speed: 90 + Math.random() * 120,
-        thickness: 1 + Math.random() * 1.6
+        fontSize,
+        spacing: fontSize * 1.1
       }
     }
 
@@ -464,6 +591,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const delta = (now - last) / 1000
       last = now
       ctx.clearRect(0, 0, width, height)
+      if (!window.__bgEnabled) {
+        requestAnimationFrame(render)
+        return
+      }
 
       drops.forEach(drop => {
         drop.y += drop.speed * delta
@@ -472,21 +603,21 @@ document.addEventListener('DOMContentLoaded', () => {
           drop.y = -Math.random() * height * 0.2
           drop.len = height * 0.25 + Math.random() * 80
           drop.speed = 90 + Math.random() * 120
-          drop.thickness = 1 + Math.random() * 1.6
+          drop.fontSize = 14 + Math.random() * 6
+          drop.spacing = drop.fontSize * 1.1
         }
         ctx.save()
-        ctx.strokeStyle = accentColor
-        ctx.globalAlpha = 0.45
-        ctx.lineWidth = drop.thickness
-        ctx.beginPath()
-        ctx.moveTo(drop.x, drop.y)
-        ctx.lineTo(drop.x, drop.y - drop.len)
-        ctx.stroke()
-        ctx.globalAlpha = 0.85
         ctx.fillStyle = accentColor
-        ctx.beginPath()
-        ctx.arc(drop.x, drop.y, 3, 0, Math.PI * 2)
-        ctx.fill()
+        ctx.textAlign = 'center'
+        ctx.font = `${drop.fontSize}px "Courier New", monospace`
+        const count = Math.max(1, Math.floor(drop.len / drop.spacing))
+        for (let i = 0; i < count; i++) {
+          const y = drop.y - i * drop.spacing
+          if (y < -drop.fontSize || y > height + drop.fontSize) continue
+          const alpha = 0.5 + (1 - i / count) * 0.65
+          ctx.globalAlpha = alpha
+          ctx.fillText(Math.random() > 0.5 ? '0' : '1', drop.x, y)
+        }
         ctx.restore()
       })
       requestAnimationFrame(render)

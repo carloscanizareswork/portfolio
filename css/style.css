@@ -52,6 +52,8 @@ body {
     font-weight: 300;
     overflow-x: hidden;
     letter-spacing: 0.01em;
+    position: relative;
+    z-index: 0;
 }
 
 /* Global Typography */
@@ -272,7 +274,7 @@ a {
     flex-direction: column;
     justify-content: center;
     position: relative;
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
 .hero-inner {
@@ -326,7 +328,7 @@ a {
 .intro {
     font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 3.5rem;
+    margin-bottom: 1.5rem;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
@@ -351,7 +353,13 @@ a {
     width: 100%;
     height: 100%;
     z-index: -1;
-    opacity: 0.3;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+body > :not(#page-matrix) {
+    position: relative;
+    z-index: 1;
 }
 
 /* Buttons */
@@ -468,6 +476,12 @@ a {
     box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
 }
 
+.clickable-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 /* Stories Section */
 .story-card {
     display: flex;
@@ -513,6 +527,37 @@ a {
     flex-grow: 1;
 }
 
+.journey-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.journey-col-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+}
+
+.journey-col p {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.journey-achievements p {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.journey-separator {
+    margin: 0.75rem 0;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+}
+
 .read-more {
     font-weight: 600;
     color: var(--text-main);
@@ -540,7 +585,7 @@ a {
 /* Timeline (Journey) */
 .timeline {
     position: relative;
-    max-width: 900px;
+    max-width: 1250px;
     margin: 0 auto;
 }
 
@@ -763,6 +808,10 @@ a {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.control-btn.is-off {
+    opacity: 0.6;
+}
+
 .control-btn:hover {
     color: var(--text-main);
     background: var(--card-hover-bg);
@@ -897,6 +946,10 @@ a {
     .timeline-item.left .bubble,
     .timeline-item.right .bubble {
         margin: 0;
+    }
+
+    .journey-columns {
+        grid-template-columns: 1fr;
     }
 
     .two-col-row {
