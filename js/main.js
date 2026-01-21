@@ -199,6 +199,15 @@ document.addEventListener('DOMContentLoaded', () => {
       socialContainer.appendChild(li);
     }
 
+    if (header.github) {
+      const gh = document.createElement('a');
+      gh.href = header.github;
+      gh.target = "_blank";
+      gh.className = "contact-icon";
+      gh.innerHTML = `<svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.28 3.438 9.758 8.207 11.34.6.113.82-.262.82-.583 0-.288-.01-1.05-.016-2.06-3.338.744-4.042-1.644-4.042-1.644-.546-1.41-1.333-1.786-1.333-1.786-1.09-.77.082-.754.082-.754 1.205.086 1.84 1.26 1.84 1.26 1.07 1.882 2.807 1.338 3.492 1.023.108-.795.418-1.338.762-1.646-2.665-.312-5.466-1.37-5.466-6.095 0-1.347.465-2.448 1.235-3.31-.124-.312-.536-1.57.116-3.272 0 0 1.008-.33 3.3 1.26a11.235 11.235 0 0 1 3.006-.42c1.02.004 2.047.142 3.006.42 2.29-1.59 3.296-1.26 3.296-1.26.654 1.702.242 2.96.118 3.272.77.862 1.232 1.963 1.232 3.31 0 4.737-2.806 5.78-5.48 6.084.43.38.814 1.13.814 2.28 0 1.646-.015 2.973-.015 3.376 0 .324.216.702.826.582C20.565 22.253 24 17.777 24 12.5 24 5.87 18.627.5 12 .5z"/></svg>`;
+      socialContainer.appendChild(gh);
+    }
+
     const emailBtn = document.createElement('a');
     emailBtn.href = `mailto:${header.email}`;
     emailBtn.className = "contact-icon";
