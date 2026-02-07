@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>Developing Software in 2026 — Carlos Cañizares</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .story-content {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+
+        .story-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .story-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .story-header h1 {
+            background: linear-gradient(to right, #8b5cf6, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-meta {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+        }
+
+        .article-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .article-body h2 {
+            margin-top: 3rem;
+            color: var(--text-main);
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .article-body ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            font-weight: 300;
+        }
+
+        .article-body blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1.5rem;
+            font-style: italic;
+            margin: 2rem 0;
+            color: var(--text-muted);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin-bottom: 3rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .centered-image {
+            display: block;
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: center;
+            margin: 0 auto 3rem auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="page-matrix" aria-hidden="true"></canvas>
+
+    <main class="story-content">
+        <a href="../#stories" class="back-link">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+            Back to Stories
+        </a>
+
+        <header class="story-header">
+            <div class="story-meta">AI & Engineering • Feb 2026</div>
+            <h1>Developing Software in 2026</h1>
+        </header>
+
+        <div class="article-body">
+            <p>I was laid off in an AI wave.</p>
+
+            <p>Not because an agent replaced me directly — but because the product I worked on became less relevant once
+                AI entered the room. Traffic dropped. Demand shifted. The ground moved.</p>
+
+            <p>And let’s be honest: some roles are already gone at big corps. Some call center operators, QA teams,
+                design, content writers, translators (...)</p>
+
+            <p>Software engineering isn’t immune.</p>
+
+            <p>We probably won’t be replaced by AI agents directly. We’ll be replaced by engineers who know how to
+                command them. At least in 2026. Beyond that? I’m not betting my house.</p>
+
+            <p>Since being "displaced" is just a fancy way of saying I finally have the time to actually test these
+                tools and think,
+                here is my take on the state of the art in 2026.</p>
+
+            <h2>The Resistance</h2>
+            <p>Many organizations must restrict AI agents due to data protection mandates, and
+                it’s clear that traditional engineering remains a highly valuable and stable path.</p>
+
+            <p>I’ve chosen the opposite path: prioritizing AI-friendly roles where I can fully leverage automation,
+                though I
+                think it’s perfectly fair if some colleagues choose not to.</p>
+
+            <h2>Vibe Coding Isn’t the Enemy</h2>
+            <p>Vibe coding works — if the person driving it understands software fundamentals. An experienced engineer
+                using AI can ship faster without lowering standards.</p>
+
+            <p>A non-technical founder can now build an MVP alone. That’s incredible. But at some point, someone who
+                understands architecture, trade-offs, and long-term maintainability will need to step in and rebuild.
+            </p>
+
+            <img src="../assets/vibe-coding.png" alt="Vibe Coding Concept" class="hero-image">
+
+            <blockquote>
+                AI accelerates creation. It does not magically inject engineering judgment.
+            </blockquote>
+
+
+            <h2>Agents</h2>
+            <p>The agent ecosystem is evolving weekly.</p>
+
+            <p>OpenClaw, Claude, Antigravity, Cursor, VSCode + Copilot, Codex… the tooling layer is becoming an
+                operating system for development itself.</p>
+
+            <p>What’s interesting isn’t just code generation. It’s context persistence and structured collaboration.</p>
+
+            <p>Things that actually matter in practice:</p>
+            <ul>
+                <li><strong>.md files</strong> that give agents memory and project context</li>
+                <li><strong>Clear implementation plans</strong> stored inside the repo</li>
+                <li><strong>Model selection</strong> depending on task complexity</li>
+                <li><strong>MCP tools</strong> like GitHub and Playwright integrated directly</li>
+                <li><strong>Controlled reasoning effort</strong> when needed</li>
+            </ul>
+
+            <img src="../assets/mcp-agent-llm-diagram.png" alt="MCP Agent LLM Interaction Diagram"
+                class="centered-image">
+
+            <p>The real power move is orchestration:</p>
+            <ol>
+                <li>Use a strong model to design the feature and write a detailed spec.</li>
+                <li>Store it in the project.</li>
+                <li>Assign each step to the appropriate model (cheap/fast vs deep/reasoning-heavy).</li>
+                <li>Track progress step by step.</li>
+                <li>Review before merge.</li>
+            </ol>
+
+            <p>You’re not “using AI.” You’re coordinating a distributed cognitive system.</p>
+
+            <p>Parallelizing agents across branches is possible — and tempting. But without human architectural
+                oversight, entropy grows fast. Rebases pile up. Context drifts.</p>
+
+            <p>Right now, agents generate. Humans maintain coherence. For now.</p>
+
+            <h2>Subagents & AI Workflows</h2>
+            <p>Subagents are one of the most interesting shifts in AI-native development.</p>
+
+            <p>You can now create specialized agents with scoped context, defined tools, and clear responsibilities —
+                backend, testing, docs, performance — each operating like a focused expert inside your system.</p>
+
+            <p>It works. But it’s still evolving.</p>
+
+            <p>Subagents are strong task executors, not full system owners. Long-horizon architecture, subtle
+                trade-offs, and business context still require human oversight.</p>
+
+            <p>The same applies to workflows around tools like Linear, Notion, or GitHub Issues. Assigning a ticket
+                directly to Codex or Copilot works well when the task is clear. When ambiguity increases, fragility
+                appears.</p>
+
+            <p>That said, the progress is undeniable — and accelerating. Memory, tool integration, and structured
+                context are improving quickly. Teams are building increasingly automated pipelines from issue to PR.</p>
+
+            <p>We’re not at autonomy.</p>
+
+            <p>But we’re clearly in the acceleration phase.</p>
+
+            <p>The smart move right now isn’t full automation — it’s controlled delegation, while the boundary of
+                autonomy keeps shifting.</p>
+
+            <p>And it’s shifting fast.</p>
+
+            <img src="../assets/subagent-workflow.png" alt="Subagent Workflow Concept" class="centered-image">
+
+            <h2>No-Code Platforms</h2>
+            <p>No-code is not the enemy of engineering — it’s leverage.</p>
+
+            <p>If you don’t need highly specific, deeply customized systems, no-code platforms are incredibly powerful.
+                For MVPs, internal tools, experimental ideas, or early-stage validation, they’re almost unfair in terms
+                of
+                speed.</p>
+
+            <p>Platforms like:</p>
+            <ul>
+                <li><strong>Bolt.new</strong> – Browser-based AI builder that generates full-stack web apps from prompts
+                    with live preview and deployment options.</li>
+                <li><strong>Meku</strong> – AI web app builder that generates production-ready React + Tailwind code
+                    that you can export or deploy.</li>
+                <li><strong>Emergent</strong> – Alternative for full-stack app generation.</li>
+                <li><strong>Lovable</strong> – Another powerful option for rapid full-stack development.</li>
+            </ul>
+
+            <p>Let you generate UI, APIs, and even deploy with minimal friction.</p>
+
+            <p>The trade-off? Control and long-term architectural flexibility.</p>
+
+            <p>For simple products: amazing. For complex, evolving systems: you’ll eventually want deeper ownership.</p>
+
+            <p>No-code isn’t replacing engineers. It’s lowering the entry barrier — and raising the bar for what
+                engineers should focus on.</p>
+
+            <img src="../assets/no-code.png" alt="No-Code Platform Diagram" class="centered-image">
+
+            <h2>The Uncomfortable Question</h2>
+            <p>Will we still be needed in some years? Maybe. Maybe not in the same way. Maybe not at the same scale.</p>
+
+            <p>Right now, the human role is <strong>coherence</strong>: defining constraints, deciding trade-offs, and
+                owning the system as a whole. But if agents become better at long-horizon reasoning, self-correction,
+                and architectural awareness? Then orchestration might automate itself. And the skill ceiling shifts
+                again.</p>
+
+            <h2>Looking Ahead</h2>
+            <p>The transition from coder to system shaper is an exciting one. It’s a chance to focus on what truly
+                matters: solving problems, designing great architectures, and building products.</p>
+
+
+
+            <p>Happy building, and see you in the next story!</p>
+        </div>
+    </main>
+
+    <footer class="container footer">
+        <div class="footer-content" style="justify-content: center;">
+            <p>© 2026 Carlos Cañizares. Engineering Stories.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Controls Panel -->
+    <div class="floating-controls">
+        <button id="theme-toggle" class="control-btn" title="Toggle Theme" aria-label="Toggle Theme">
+            <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                </path>
+            </svg>
+            <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+        </button>
+        <button id="lang-toggle" class="control-btn" title="Switch Language">
+            <span class="lang-text">EN</span>
+        </button>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

@@ -1,133 +1,145 @@
 {
-  "en":{
-    "nav":{
-      "home":"Portfolio",
-      "stories":"Stories",
-      "projects":"Projects",
-      "journey":"Journey",
-      "education":"Education",
-      "contact":"Contact"
+  "en": {
+    "nav": {
+      "home": "Portfolio",
+      "stories": "Stories",
+      "projects": "Projects",
+      "journey": "Journey",
+      "education": "Education",
+      "contact": "Contact"
     },
-    "settings":{
-      "theme":"Theme",
-      "light":"Light",
-      "dark":"Dark",
-      "language":"Language"
+    "settings": {
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "language": "Language"
     },
-    "hero":{
-      "intro":"Full Stack Developer with 20 years of experience designing and building scalable, high-performance web and mobile applications using .NET Core, Node.js (TypeScript), and JavaScript frameworks. Strong expertise in AWS, Azure and GC, CI/CD, and containerized deployments. Passionate about clean code, data-driven architecture, and agile collaboration. Recently adopting AI agents to boost productivity and enhance quality of what I deliver."
+    "hero": {
+      "intro": "Full Stack Developer with 20 years of experience designing and building scalable, high-performance web and mobile applications using .NET Core, Node.js (TypeScript), and JavaScript frameworks. Strong expertise in AWS, Azure and GC, CI/CD, and containerized deployments. Passionate about clean code, data-driven architecture, and agile collaboration. Recently adopting AI agents to boost productivity and enhance quality of what I deliver."
     },
-    "contact":{
-      "title":"Ready to collaborate?",
-      "body":"I'm available. Let's build something amazing together.",
-      "cta":"Get in Touch"
+    "contact": {
+      "title": "Ready to collaborate?",
+      "body": "I'm available. Let's build something amazing together.",
+      "cta": "Get in Touch"
     },
-    "sections":{
-      "stories":"Last Stories",
-      "projects":"Projects",
-      "journeyTitle":"Journey",
-      "journeyLead":"A short timeline of roles, learning, and milestones."
+    "sections": {
+      "stories": "Last Stories",
+      "projects": "Projects",
+      "journeyTitle": "Journey",
+      "journeyLead": "A short timeline of roles, learning, and milestones."
     },
-    "journeyLabels":{
-      "projectsRole":"Projects & Role",
-      "achievements":"Achievements"
+    "journeyLabels": {
+      "projectsRole": "Projects & Role",
+      "achievements": "Achievements"
     },
-    "stories":[
+    "stories": [
       {
-        "title":"Maximizing Context, Minimizing Costs",
-        "excerpt":"Exploring how to handle agent memory efficiently using summarization, vector database, and RAG to reduce OpenAI costs..."
+        "title": "Developing Software in 2026",
+        "excerpt": "Exploring the shift from coding to orchestration in 2026 and how software engineers are evolving into system shapers."
       },
       {
-        "title":"The Future of Voice: WebRTC Agents",
-        "excerpt":"Building full-duplex voice agents using OpenAI Realtime API. Deep dive into ephemeral tokens and real-time audio..."
+        "title": "Maximizing Context, Minimizing Costs",
+        "excerpt": "Exploring how to handle agent memory efficiently using summarization, vector database, and RAG to reduce OpenAI costs..."
+      },
+      {
+        "title": "The Future of Voice: WebRTC Agents",
+        "excerpt": "Building full-duplex voice agents using OpenAI Realtime API. Deep dive into ephemeral tokens and real-time audio..."
       }
     ]
   },
-  "es":{
-    "nav":{
-      "home":"Portafolio",
-      "stories":"Historias",
-      "projects":"Proyectos",
-      "journey":"Trayectoria",
-      "education":"Educación",
-      "contact":"Contacto"
+  "es": {
+    "nav": {
+      "home": "Portafolio",
+      "stories": "Historias",
+      "projects": "Proyectos",
+      "journey": "Trayectoria",
+      "education": "Educación",
+      "contact": "Contacto"
     },
-    "settings":{
-      "theme":"Tema",
-      "light":"Light",
-      "dark":"Dark",
-      "language":"Idioma"
+    "settings": {
+      "theme": "Tema",
+      "light": "Light",
+      "dark": "Dark",
+      "language": "Idioma"
     },
-    "hero":{
-      "intro":"Desarrollador Full Stack con 20 años de experiencia diseñando y construyendo aplicaciones web y móviles escalables y de alto rendimiento usando .NET Core, Node.js (TypeScript) y frameworks de JavaScript. Fuerte experiencia en AWS, Azure y GC, CI/CD y despliegues en contenedores. Apasionado por el código limpio, la arquitectura basada en datos y la colaboración ágil. Recientemente estoy adoptando agentes de IA para impulsar mi productividad y mejorar la calidad de lo que entrego."
+    "hero": {
+      "intro": "Desarrollador Full Stack con 20 años de experiencia diseñando y construyendo aplicaciones web y móviles escalables y de alto rendimiento usando .NET Core, Node.js (TypeScript) y frameworks de JavaScript. Fuerte experiencia en AWS, Azure y GC, CI/CD y despliegues en contenedores. Apasionado por el código limpio, la arquitectura basada en datos y la colaboración ágil. Recientemente estoy adoptando agentes de IA para impulsar mi productividad y mejorar la calidad de lo que entrego."
     },
-    "contact":{
-      "title":"¿Listo para colaborar?",
-      "body":"Estoy disponible. Construyamos algo increíble juntos.",
-      "cta":"Contactar"
+    "contact": {
+      "title": "¿Listo para colaborar?",
+      "body": "Estoy disponible. Construyamos algo increíble juntos.",
+      "cta": "Contactar"
     },
-    "sections":{
-      "stories":"Últimas historias",
-      "projects":"Proyectos",
-      "journeyTitle":"Trayectoria",
-      "journeyLead":"Un breve recorrido por roles, aprendizajes y hitos."
+    "sections": {
+      "stories": "Últimas historias",
+      "projects": "Proyectos",
+      "journeyTitle": "Trayectoria",
+      "journeyLead": "Un breve recorrido por roles, aprendizajes y hitos."
     },
-    "journeyLabels":{
-      "projectsRole":"Proyectos y rol",
-      "achievements":"Logros"
+    "journeyLabels": {
+      "projectsRole": "Proyectos y rol",
+      "achievements": "Logros"
     },
-    "stories":[
+    "stories": [
       {
-        "title":"Maximizando Contexto, Minimizando Costos",
-        "excerpt":"Explorando cómo manejar la memoria del agente de manera eficiente usando resúmenes, bases de datos vectoriales y RAG para reducir costos de OpenAI..."
+        "title": "Desarrollo de Software en 2026",
+        "excerpt": "Explorando el cambio de la codificación a la orquestación en 2026 y cómo los ingenieros de software evolucionan a modeladores de sistemas."
       },
       {
-        "title":"El Futuro de la Voz: Agentes WebRTC",
-        "excerpt":"Construyendo agentes de voz full-duplex usando la API Realtime de OpenAI. Análisis profundo de tokens efímeros y audio en tiempo real..."
+        "title": "Maximizando Contexto, Minimizando Costos",
+        "excerpt": "Explorando cómo manejar la memoria del agente de manera eficiente usando resúmenes, bases de datos vectoriales y RAG para reducir costos de OpenAI..."
+      },
+      {
+        "title": "El Futuro de la Voz: Agentes WebRTC",
+        "excerpt": "Construyendo agentes de voz full-duplex usando la API Realtime de OpenAI. Análisis profundo de tokens efímeros y audio en tiempo real..."
       }
     ]
   },
-  "ca":{
-    "nav":{
-      "home":"Portfoli",
-      "stories":"Històries",
-      "projects":"Projectes",
-      "journey":"Trajectòria",
-      "education":"Educació",
-      "contact":"Contacte"
+  "ca": {
+    "nav": {
+      "home": "Portfoli",
+      "stories": "Històries",
+      "projects": "Projectes",
+      "journey": "Trajectòria",
+      "education": "Educació",
+      "contact": "Contacte"
     },
-    "settings":{
-      "theme":"Tema",
-      "light":"Light",
-      "dark":"Dark",
-      "language":"Idioma"
+    "settings": {
+      "theme": "Tema",
+      "light": "Light",
+      "dark": "Dark",
+      "language": "Idioma"
     },
-    "hero":{
-      "intro":"Desenvolupador Full Stack amb 20 anys d'experiència dissenyant i construint aplicacions web i mòbils escalables i d'alt rendiment fent servir .NET Core, Node.js (TypeScript) i frameworks de JavaScript. Forta experiència en AWS, Azure i GC, CI/CD i desplegaments en contenidors. Apassionat pel codi net, l'arquitectura basada en dades i la col·laboració àgil. Recentment estic adoptant agents d'IA per impulsar la meva productivitat i millorar la qualitat del que entrego."
+    "hero": {
+      "intro": "Desenvolupador Full Stack amb 20 anys d'experiència dissenyant i construint aplicacions web i mòbils escalables i d'alt rendiment fent servir .NET Core, Node.js (TypeScript) i frameworks de JavaScript. Forta experiència en AWS, Azure i GC, CI/CD i desplegaments en contenidors. Apassionat pel codi net, l'arquitectura basada en dades i la col·laboració àgil. Recentment estic adoptant agents d'IA per impulsar la meva productivitat i millorar la qualitat del que entrego."
     },
-    "contact":{
-      "title":"Preparat per col.laborar?",
-      "body":"Estic disponible. Construim alguna cosa increible plegats.",
-      "cta":"Contactar"
+    "contact": {
+      "title": "Preparat per col.laborar?",
+      "body": "Estic disponible. Construim alguna cosa increible plegats.",
+      "cta": "Contactar"
     },
-    "sections":{
-      "stories":"Últimes històries",
-      "projects":"Projectes",
-      "journeyTitle":"Trajectòria",
-      "journeyLead":"Un breu recorregut per rols, aprenentatges i fites."
+    "sections": {
+      "stories": "Últimes històries",
+      "projects": "Projectes",
+      "journeyTitle": "Trajectòria",
+      "journeyLead": "Un breu recorregut per rols, aprenentatges i fites."
     },
-    "journeyLabels":{
-      "projectsRole":"Projectes i rol",
-      "achievements":"Assoliments"
+    "journeyLabels": {
+      "projectsRole": "Projectes i rol",
+      "achievements": "Assoliments"
     },
-    "stories":[
+    "stories": [
       {
-        "title":"Maximitzant Context, Minimitzant Costos",
-        "excerpt":"Explorant com gestionar la memòria de l'agent de manera eficient usant resums, bases de dades vectorials i RAG per reduir costos d'OpenAI..."
+        "title": "Desenvolupament de Programari el 2026",
+        "excerpt": "Explorant el canvi de la codificació a l'orquestració el 2026 i com els enginyers de programari evolucionen a modeladors de sistemes."
       },
       {
-        "title":"El Futur de la Veu: Agents WebRTC",
-        "excerpt":"Construint agents de veu full-duplex usant l'API Realtime d'OpenAI. Anàlisi profunda de tokens efímers i àudio en temps real..."
+        "title": "Maximitzant Context, Minimitzant Costos",
+        "excerpt": "Explorant com gestionar la memòria de l'agent de manera eficient usant resums, bases de dades vectorials i RAG per reduir costos d'OpenAI..."
+      },
+      {
+        "title": "El Futur de la Veu: Agents WebRTC",
+        "excerpt": "Construint agents de veu full-duplex usant l'API Realtime d'OpenAI. Anàlisi profunda de tokens efímers i àudio en temps real..."
       }
     ]
   }

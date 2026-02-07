@@ -259,6 +259,13 @@
   },
   "stories": [
     {
+      "date": "Feb 2026",
+      "title": "Developing Software in 2026",
+      "excerpt": "Exploring the shift from coding to orchestration in 2026 and how software engineers are evolving into system shapers...",
+      "link": "stories/developing-software-2026.html",
+      "coverImage": "assets/developing-software-2026.png"
+    },
+    {
       "date": "Jan 2026",
       "title": "Maximizing Context, Minimizing Costs",
       "excerpt": "Exploring how to handle agent memory efficiently using summarization, vector database, and RAG to reduce OpenAI costs...",

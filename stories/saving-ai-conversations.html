@@ -198,9 +198,11 @@
 
             <p>Key strategies to provide context to the agent:</p>
             <ul>
-                <li><strong>System Messages:</strong> Inject conversation summaries and user preferences at the beginning</li>
+                <li><strong>System Messages:</strong> Inject conversation summaries and user preferences at the
+                    beginning</li>
                 <li><strong>Sliding Window:</strong> Keep only the last 15 messages in full detail</li>
-                <li><strong>Metadata Injection:</strong> Add structured data about user profile, past decisions, and facts</li>
+                <li><strong>Metadata Injection:</strong> Add structured data about user profile, past decisions, and
+                    facts</li>
                 <li><strong>Structured Summaries:</strong> Ask the model for a consistent markdown or JSON summary</li>
             </ul>
 
@@ -210,26 +212,10 @@
                     summary document</strong> that is always up to date.</p>
 
             <h3>The Practical Approach: One Rolling Summary File</h3>
-            <p>Here's the key shift: <strong>we keep only one vector file per conversation, not one file per 15 messages.</strong>
+            <p>Here's the key shift: <strong>we keep only one vector file per conversation, not one file per 15
+                    messages.</strong>
                 Every 15 messages we regenerate the summary, store it in Firebase, and replace the vector file in OpenAI
                 with the new content. That means the vector store always represents the latest consolidated summary.</p>
-
-            <div class="code-block">
-                <pre>
-// Generate updated structured markdown summary
-const summaryMarkdown = await generateSummary(messages);
-
-// Upload to OpenAI as a file
-const file = await openai.files.create({
-  file: Buffer.from(summaryMarkdown),
-  purpose: "assistants"
-});
-
-// Replace the previous file in the vector store
-await openai.vectorStores.files.delete(vectorStoreId, oldFileId);
-await openai.vectorStores.files.create(vectorStoreId, { file_id: file.id });
-                </pre>
-            </div>
 
             <div class="diagram-container">
                 <h3>Simplified RAG Architecture</h3>
@@ -268,9 +254,13 @@ await openai.vectorStores.files.create(vectorStoreId, { file_id: file.id });
                 <li>✅ <strong>Less code:</strong> Fewer moving parts = fewer bugs</li>
             </ul>
 
-            <p><strong>When to use manual embeddings instead:</strong> If you need vendor independence, use a custom vector DB (Pinecone, Supabase), or require fine-grained control over chunking strategies. For most applications, a single rolling summary file is the sweet spot between simplicity and effectiveness.</p>
+            <p><strong>When to use manual embeddings instead:</strong> If you need vendor independence, use a custom
+                vector DB (Pinecone, Supabase), or require fine-grained control over chunking strategies. For most
+                applications, a single rolling summary file is the sweet spot between simplicity and effectiveness.</p>
 
-            <p>This approach allows us to maintain "infinite memory" while only using a fixed amount of tokens per request. The AI can recall specific details from conversations that happened weeks ago, without sending thousands of messages in every prompt.</p>
+            <p>This approach allows us to maintain "infinite memory" while only using a fixed amount of tokens per
+                request. The AI can recall specific details from conversations that happened weeks ago, without sending
+                thousands of messages in every prompt.</p>
 
             <h2>Automating the Workflow</h2>
             <p>To make this seamless, we automate the process. A background task runs every 15 messages to:</p>
@@ -282,7 +272,8 @@ await openai.vectorStores.files.create(vectorStoreId, { file_id: file.id });
             </ul>
 
             <h3>AI-Powered Summarization Pipeline</h3>
-            <p>The summarization process itself is powered by AI. We use a dedicated prompt template that instructs the model to:</p>
+            <p>The summarization process itself is powered by AI. We use a dedicated prompt template that instructs the
+                model to:</p>
             <div class="code-block">
                 <pre>
 // Automated Summarization with AI
@@ -322,7 +313,9 @@ const summary = await openai.chat.completions.create({
 // - Venue: Riverside Manor (confirmed 2026-01-10)
                 </pre>
             </div>
-            <p>This automated approach ensures consistency and reduces manual overhead. The AI identifies patterns and extracts actionable insights that would be tedious to capture manually. Plus, markdown format makes summaries debuggable and auditable.</p>
+            <p>This automated approach ensures consistency and reduces manual overhead. The AI identifies patterns and
+                extracts actionable insights that would be tedious to capture manually. Plus, markdown format makes
+                summaries debuggable and auditable.</p>
 
             <h3>Cost Comparison</h3>
             <div class="highlight-box">
@@ -332,7 +325,8 @@ const summary = await openai.chat.completions.create({
                     <li>Embedding: Included (automatic)</li>
                     <li>File Search: Free with Assistant API</li>
                 </ul>
-                <p><strong>Typical costs:</strong> A markdown summary file is 2-5KB. For 100 users with 10 summary files each = ~5MB = ~$0.0005/day. Negligible compared to token costs savings!</p>
+                <p><strong>Typical costs:</strong> A markdown summary file is 2-5KB. For 100 users with 10 summary files
+                    each = ~5MB = ~$0.0005/day. Negligible compared to token costs savings!</p>
             </div>
 
             <h2>Conclusion: Efficiency is the New Scale</h2>
@@ -342,7 +336,11 @@ const summary = await openai.chat.completions.create({
 
             <div class="real-world-example">
                 <h3>🎉 Real-World Application: Smart Weddings AI Agent</h3>
-                <p>We successfully implemented this exact architecture in our <strong>Smart Weddings</strong> project, where an AI wedding planning agent helps couples organize their big day. The agent needs to remember preferences discussed weeks ago (venue style, budget constraints, guest list details) while having natural conversations.</p>
+                <p>This was successfully implemented in <strong>Smart Weddings</strong> project,
+                    where
+                    an AI wedding planning agent helps couples organize their big day. The agent needs to remember
+                    preferences discussed weeks ago (venue style, budget constraints, guest list details) while having
+                    natural conversations.</p>
                 <p><strong>Results achieved:</strong></p>
                 <ul>
                     <li>Reduced token costs by 75% for long-running conversations (50+ messages)</li>
@@ -351,7 +349,9 @@ const summary = await openai.chat.completions.create({
                     <li>Summarization pipeline runs nightly via Cloud Functions</li>
                     <li>Vector search enables instant recall of specific vendor discussions</li>
                 </ul>
-                <p>The wedding planning domain is perfect for this approach because conversations are inherently long-term, detail-rich, and require perfect recall of user preferences across multiple sessions. Our clients love that the AI "remembers" everything without them having to repeat themselves.</p>
+                <p>The wedding planning domain is perfect for this approach because conversations are inherently
+                    long-term, detail-rich, and require perfect recall of user preferences across multiple sessions. Our
+                    clients love that the AI "remembers" everything without them having to repeat themselves.</p>
             </div>
         </div>
     </main>
