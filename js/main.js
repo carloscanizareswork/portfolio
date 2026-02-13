@@ -536,105 +536,171 @@ document.addEventListener('DOMContentLoaded', () => {
     // end journey.forEach
   }
 
-  function initMatrixBackground() {
+  function initDashesBackground() {
     const canvas = document.getElementById('page-matrix')
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-    const savedBg = localStorage.getItem('bg-enabled')
-    window.__bgEnabled = savedBg === 'true'
-    const colorParser = document.createElement('canvas').getContext('2d')
-    function normalizeColor(str) {
-      if (!str) return '#6c5ce7'
-      try {
-        colorParser.fillStyle = '#000'
-        colorParser.fillStyle = str
-        return colorParser.fillStyle || '#6c5ce7'
-      } catch (e) {
-        return '#6c5ce7'
-      }
-    }
-    function lighten(hex, amt) {
-      const normalized = normalizeColor(hex).replace('#', '')
-      const num = parseInt(normalized, 16)
-      if (Number.isNaN(num)) return '#6c5ce7'
-      const r = Math.min(255, (num >> 16) + amt)
-      const g = Math.min(255, ((num >> 8) & 255) + amt)
-      const b = Math.min(255, (num & 255) + amt)
-      return `rgb(${r}, ${g}, ${b})`
-    }
-    const getAccent = () => lighten(getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#6c5ce7', 40)
-    let accentColor = getAccent()
-    const observer = new MutationObserver(() => { accentColor = getAccent() })
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
 
     let width = 0
     let height = 0
-    let drops = []
+    let particles = []
+    const mouse = { x: -1000, y: -1000, lastMove: 0 }
 
-    function createDrop() {
-      const fontSize = 14 + Math.random() * 6
-      return {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        len: height * 0.25 + Math.random() * 80,
-        speed: 90 + Math.random() * 120,
-        fontSize,
-        spacing: fontSize * 1.1
-      }
-    }
+    // Exact Antigravity Colors
+    const tlColor = [66, 133, 244]  // Blue #4285f4
+    const trColor = [234, 67, 53]   // Red #ea4335
+    const brColor = [251, 188, 5]   // Yellow #fbbc05
+    const blColor = [52, 168, 83]   // Green #34a853
 
     function resize() {
       width = canvas.width = window.innerWidth
       height = canvas.height = window.innerHeight
-      const count = Math.max(18, Math.floor(width / 80))
-      drops = Array.from({ length: count }, () => createDrop())
+      initParticles()
+    }
+
+    function initParticles() {
+      particles = []
+      const spacing = 32 // Increase spacing slightly
+
+      // Jittered Grid (Simulates Poisson Disk Sampling)
+      for (let x = 0; x < width; x += spacing) {
+        for (let y = 0; y < height; y += spacing) {
+          // Add organic randomness to position
+          const originX = x + (Math.random() - 0.5) * spacing * 0.7
+          const originY = y + (Math.random() - 0.5) * spacing * 0.7
+
+          particles.push({
+            originX,
+            originY,
+            x: originX,
+            y: originY,
+            rotation: 0,
+            targetRotation: 0,
+            // Random offset for drift phase
+            phase: Math.random() * Math.PI * 2,
+            // Random jitter for rotation to feel organic
+            noiseAngle: (Math.random() - 0.5) * 0.5,
+            // Per-particle noise offset for shape distortion
+            shapeNoise: Math.random()
+          })
+        }
+      }
+    }
+
+    // Bilinear interpolation for color
+    function getColor(x, y) {
+      const u = x / width
+      const v = y / height
+
+      // Mix colors based on position
+      const r = (1 - v) * ((1 - u) * tlColor[0] + u * trColor[0]) + v * ((1 - u) * blColor[0] + u * brColor[0])
+      const g = (1 - v) * ((1 - u) * tlColor[1] + u * trColor[1]) + v * ((1 - u) * blColor[1] + u * brColor[1])
+      const b = (1 - v) * ((1 - u) * tlColor[2] + u * trColor[2]) + v * ((1 - u) * blColor[2] + u * brColor[2])
+
+      return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`
+    }
+
+    function updateParticles(time) {
+      particles.forEach(p => {
+        // Organic drift animation (Simplex-like motion)
+        const driftX = Math.sin(time * 0.001 + p.phase) * 2 + Math.cos(time * 0.002 + p.phase) * 2
+        const driftY = Math.cos(time * 0.0015 + p.phase) * 2 + Math.sin(time * 0.0025 + p.phase) * 2
+
+        p.x = p.originX + driftX
+        p.y = p.originY + driftY
+
+        // Calculate rotation to face mouse
+        const dx = mouse.x - p.x
+        const dy = mouse.y - p.y
+
+        // Exact atan2 logic
+        p.targetRotation = Math.atan2(dy, dx) + p.noiseAngle
+
+        // Smooth rotation (slower easing for weight)
+        let diff = p.targetRotation - p.rotation
+        while (diff > Math.PI) diff -= Math.PI * 2
+        while (diff < -Math.PI) diff += Math.PI * 2
+        p.rotation += diff * 0.08 // Slightly slower ease
+      })
+    }
+
+    // Smoothstep function for soft edges
+    function smoothstep(min, max, value) {
+      var x = Math.max(0, Math.min(1, (value - min) / (max - min)));
+      return x * x * (3 - 2 * x);
+    }
+
+    function draw(time) {
+      ctx.clearRect(0, 0, width, height)
+      if (!window.__bgEnabled) return
+
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light'
+      // Dynamic stability calculation
+      const timeSinceMove = Date.now() - mouse.lastMove
+      // 0 = just moved (unstable), 1 = stable logic (after 2s)
+      const stability = Math.min(1, timeSinceMove / 2000)
+      // Distortion is high when unstable (0), low when stable (1)
+      const distortion = 1 - Math.pow(stability, 3) // Cubic ease-out for quick stabilization feel
+
+      const baseMaxDist = Math.min(width, height) * 0.45
+      const fadeDist = 100 // Fade width at edge of ring
+
+      particles.forEach(p => {
+        // Apply distortion to distance check based on particle's noise
+        // When moving: ring is jagged. When stable: ring is perfect.
+        const noiseEffect = (p.shapeNoise - 0.5) * 300 * distortion
+        const effectiveMaxDist = baseMaxDist + noiseEffect
+
+        // Calculate distance from mouse
+        const dx = p.x - mouse.x
+        const dy = p.y - mouse.y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+
+        // Visibility Ring logic: 1.0 at center, fading out to 0 at maxDist
+        // Reverse smoothstep: 1 -> 0
+        const alpha = 1 - smoothstep(effectiveMaxDist - fadeDist, effectiveMaxDist, dist)
+
+        if (alpha <= 0.01) return
+
+        ctx.save()
+        ctx.translate(p.x, p.y)
+        ctx.rotate(p.rotation)
+
+        ctx.strokeStyle = getColor(p.x, p.y)
+        // Base opacity multiplied by ring alpha
+        ctx.globalAlpha = (isLight ? 0.8 : 0.9) * alpha
+        ctx.lineWidth = 2.5 // Slightly thicker like source
+        ctx.lineCap = 'round'
+
+        ctx.beginPath()
+        ctx.moveTo(-6, 0)
+        ctx.lineTo(6, 0)
+        ctx.stroke()
+
+        ctx.restore()
+      })
+    }
+
+    function animate(time) {
+      updateParticles(time)
+      draw(time)
+      requestAnimationFrame(animate)
     }
 
     window.addEventListener('resize', resize)
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX
+      mouse.y = e.clientY
+      mouse.lastMove = Date.now()
+    })
+
+    // Initial setup
     resize()
-
-    let last = 0
-    function render(now) {
-      if (!last) last = now
-      const delta = (now - last) / 1000
-      last = now
-      ctx.clearRect(0, 0, width, height)
-      if (!window.__bgEnabled) {
-        requestAnimationFrame(render)
-        return
-      }
-
-      drops.forEach(drop => {
-        drop.y += drop.speed * delta
-        if (drop.y - drop.len > height) {
-          drop.x = Math.random() * width
-          drop.y = -Math.random() * height * 0.2
-          drop.len = height * 0.25 + Math.random() * 80
-          drop.speed = 90 + Math.random() * 120
-          drop.fontSize = 14 + Math.random() * 6
-          drop.spacing = drop.fontSize * 1.1
-        }
-        ctx.save()
-        ctx.fillStyle = accentColor
-        ctx.textAlign = 'center'
-        ctx.font = `${drop.fontSize}px "Courier New", monospace`
-        const count = Math.max(1, Math.floor(drop.len / drop.spacing))
-        for (let i = 0; i < count; i++) {
-          const y = drop.y - i * drop.spacing
-          if (y < -drop.fontSize || y > height + drop.fontSize) continue
-          const alpha = 0.5 + (1 - i / count) * 0.65
-          ctx.globalAlpha = alpha
-          ctx.fillText(Math.random() > 0.5 ? '0' : '1', drop.x, y)
-        }
-        ctx.restore()
-      })
-      requestAnimationFrame(render)
-    }
-    requestAnimationFrame(render)
+    requestAnimationFrame(animate)
   }
 
-  initMatrixBackground()
+  initDashesBackground()
   loadData()
 
 })
