@@ -32,6 +32,10 @@
       "projectsRole": "Projects & Role",
       "achievements": "Achievements"
     },
+    "storyUi": {
+      "readMore": "Read article",
+      "availableLanguages": "Available languages"
+    },
     "stories": [
       {
         "title": "Developing Software in 2026",
@@ -80,6 +84,10 @@
       "projectsRole": "Proyectos y rol",
       "achievements": "Logros"
     },
+    "storyUi": {
+      "readMore": "Leer artículo",
+      "availableLanguages": "Idiomas disponibles"
+    },
     "stories": [
       {
         "title": "Desarrollo de Software en 2026",
@@ -127,6 +135,10 @@
     "journeyLabels": {
       "projectsRole": "Projectes i rol",
       "achievements": "Assoliments"
+    },
+    "storyUi": {
+      "readMore": "Llegir article",
+      "availableLanguages": "Idiomes disponibles"
     },
     "stories": [
       {

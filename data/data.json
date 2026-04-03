@@ -185,6 +185,17 @@
       "thumbnail": "assets/arion.png"
     },
     {
+      "title": "AI Flow Manager",
+      "description": "A personal side project I started to learn: AI agents, workflows, different LLMs, connectors, and anything else that looked interesting. The goal is never to compete with something like N8N — it's to have fun, practice spec-driven development, and keep sharpening how I work with coding agents.",
+      "description_es": "Un side project personal que empecé para aprender: agentes de IA, flujos de trabajo, distintos LLMs, conectores y todo lo que me fuera llamando la atención. El objetivo no es competir con algo como N8N, sino disfrutar del proceso, practicar spec-driven development y seguir afinando cómo trabajo con agentes de código.",
+      "description_ca": "Un side project personal que vaig començar per aprendre: agents d'IA, fluxos de treball, diferents LLMs, connectors i tot allò que em cridava l'atenció. L'objectiu no és competir amb alguna cosa com N8N, sinó gaudir del procés, practicar spec-driven development i seguir afinant com treballo amb agents de codi.",
+      "stack": "Node.js, Python, Redis, OpenTelemetry, React",
+      "status": "Hobby Project",
+      "links": [],
+      "url": "https://ai-flow-manager-ex5h35fmia-uc.a.run.app/",
+      "thumbnail": "assets/ai-flow-manager-cover.png"
+    },
+    {
       "title": "Smart Weddings",
       "description": "AI-powered wedding planning platform with automated vendor onboarding, a personalized virtual assistant for each event, and a professional space designer for real-time layouts. Couples and venues get instant answers and full control of seating and space planning.",
       "description_es": "Plataforma de planificación de bodas impulsada por IA con onboarding automático de proveedores, asistente virtual personalizado para cada evento y diseñador profesional de espacios en tiempo real. Parejas y lugares obtienen respuestas instantáneas y control total de seating y planificación de espacios.",
@@ -192,19 +203,7 @@
       "stack": "React, Next, Firebase, OpenAI, Voice Agent/WebRTC, RAG",
       "status": "In Development",
       "links": [],
-      "url": "https://smart-weddings-qmzjea3ufq-uc.a.run.app/",
       "thumbnail": "assets/smart-weddings.png"
-    },
-    {
-      "title": "AI Flow Manager",
-      "description": "An orchestration layer for AI agents that manages workflows, approvals, and real-time observability across teams.",
-      "description_es": "Capa de orquestación para agentes de IA que gestiona flujos de trabajo, aprobaciones y observabilidad en tiempo real entre equipos.",
-      "description_ca": "Capa d'orquestracio per a agents d'IA que gestiona fluxos de treball, aprovacions i observabilitat en temps real entre equips.",
-      "stack": "Node.js, Python, Redis, OpenTelemetry, React",
-      "status": "Prototype",
-      "hidden": true,
-      "links": [],
-      "thumbnail": "assets/ongoing-ai-flow-manager.svg"
     },
     {
       "title": "Collection Car Manager",
@@ -259,6 +258,57 @@
   },
   "stories": [
     {
+      "id": "opencode",
+      "date": "Apr 2026",
+      "title": "OpenCode + Ollama: Powerful Free Models and Zero Cloud Costs",
+      "excerpt": "Free Zen models that are actually capable, full local inference via Ollama, and no telemetry. OpenCode had been on my list for months — turns out the cost argument alone was worth the try...",
+      "link": "stories/opencode.html",
+      "translations": {
+        "es": {
+          "date": "Apr 2026",
+          "title": "OpenCode + Ollama: Modelos Gratuitos Potentes y Cero Costes en la Nube",
+          "excerpt": "Modelos Zen gratuitos que realmente rinden, inferencia local completa con Ollama y sin telemetría. Lo tenía en mi lista desde hacía meses — resulta que el argumento del coste solo ya valía la prueba...",
+          "link": "stories/opencode-es.html"
+        }
+      },
+      "coverImage": "assets/open-code-ollama.png"
+    },
+    {
+      "id": "spec-driven-development",
+      "date": "Mar 2026",
+      "title": "Spec-Driven Development",
+      "excerpt": "The bottleneck was never code. In an AI-accelerated world, specifications are the product — and measuring everything is the engineer's new mandate...",
+      "link": "stories/spec-driven-development.html",
+      "translations": {
+        "es": {
+          "date": "Mar 2026",
+          "title": "Spec Driven Development",
+          "excerpt": "El cuello de botella nunca fue escribir código. En un entorno acelerado por IA, la especificación pasa a ser el producto y medirlo todo se convierte en la nueva obligación del ingeniero...",
+          "link": "stories/spec-driven-development-es.html"
+        }
+      },
+      "coverImage": "assets/spec-driven-development.png",
+      "coverSize": "cover",
+      "coverPosition": "center 68%"
+    },
+    {
+      "id": "ai-wont-just-replace-roles",
+      "date": "Mar 2026",
+      "title": "AI Won't Just Replace Roles. It Will Replace Companies.",
+      "excerpt": "AI pressure is not limited to jobs inside organizations. Lower build costs, agentic consumers, and automated switching threaten entire digital products and business models...",
+      "coverImage": "assets/ai-wont-just-replace-roles.png",
+      "link": "stories/ai-wont-just-replace-roles.html",
+      "translations": {
+        "es": {
+          "date": "Mar 2026",
+          "title": "La IA No Solo Va a Sustituir Puestos. Va a Sustituir Empresas.",
+          "excerpt": "La presión de la IA no se queda en los puestos dentro de una organización. La caída del coste de construir software, los usuarios asistidos por agentes y el cambio automático de proveedor ponen en jaque productos digitales enteros y modelos de negocio completos...",
+          "link": "stories/ai-wont-just-replace-roles-es.html"
+        }
+      }
+    },
+    {
+      "id": "developing-software-2026",
       "date": "Feb 2026",
       "title": "Developing Software in 2026",
       "excerpt": "Exploring the shift from coding to orchestration in 2026 and how software engineers are evolving into system shapers...",
@@ -266,6 +316,7 @@
       "coverImage": "assets/developing-software-2026.png"
     },
     {
+      "id": "saving-ai-conversations",
       "date": "Jan 2026",
       "title": "Maximizing Context, Minimizing Costs",
       "excerpt": "Exploring how to handle agent memory efficiently using summarization, vector database, and RAG to reduce OpenAI costs...",
@@ -273,6 +324,7 @@
       "coverImage": "assets/maximizing-context-minimizing-costs.png"
     },
     {
+      "id": "voice-agent-webrtc",
       "date": "Jan 2026",
       "title": "The Future of Voice: WebRTC Agents",
       "excerpt": "Building full-duplex voice agents using OpenAI Realtime API. Deep dive into ephemeral tokens and real-time audio...",

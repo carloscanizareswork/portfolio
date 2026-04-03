@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>Spec Driven Development — Carlos Cañizares</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .story-content {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+
+        .story-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .story-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.2em;
+            line-height: 1.15;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .story-header h1 {
+            background: linear-gradient(to right, #8b5cf6, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-meta {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+        }
+
+        .article-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .article-body h2 {
+            margin-top: 3rem;
+            color: var(--text-main);
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .article-body ul,
+        .article-body ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            font-weight: 300;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-body blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1.5rem;
+            font-style: italic;
+            margin: 2rem 0;
+            color: var(--text-muted);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin-bottom: 3rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .centered-image {
+            display: block;
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: center;
+            margin: 0 auto 3rem auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+
+<body data-story-id="spec-driven-development" data-story-lang="es">
+    <canvas id="page-matrix" aria-hidden="true"></canvas>
+
+    <main class="story-content">
+        <a href="../#stories" class="back-link">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+            Volver a historias
+        </a>
+
+        <header class="story-header">
+            <div class="story-meta">IA e Ingeniería • Mar 2026</div>
+            <h1>Spec Driven Development: el Verdadero Cuello de Botella Nunca Fue el Código</h1>
+        </header>
+
+        <div class="article-body">
+            <p>Llevo veinte años desarrollando software. He publicado aplicaciones de escritorio en WPF, montado microservicios sobre Azure y AWS, lanzado apps de React Native desde cero, construido webs completas, liderado equipos de 3 a 12 personas, migrado monolitos legacy, diseñado arquitecturas event-driven y depurado producción a las tres de la mañana. He escrito muchísimo código.</p>
+
+            <p>Y ahora, por primera vez en mi carrera, escribir código ya no es la parte difícil.</p>
+
+            <p>Los agentes de IA pueden levantar una feature full-stack en minutos. Copilot, Cursor, Codex, Claude: elige herramienta. La capacidad bruta de producir código se ha disparado. El coste de desarrollo cae rápido. Mantener software empieza a ser más barato. Lo que antes ocupaba un sprint ahora cabe en una tarde.</p>
+
+            <p>Pero hay una verdad incómoda con la que me encuentro una y otra vez: <strong>el cuello de botella ahora está mucho antes, en la definición</strong>. Ya no se trata de construir rápido. Se trata de definir con precisión qué merece la pena construir.</p>
+
+            <blockquote>
+                El bug más caro de 2026 es una especificación ambigua.
+            </blockquote>
+
+            <h2>La Especificación Es el Producto</h2>
+
+            <p>Durante años traté las specs como un trámite previo al código. Unas cuantas user stories, criterios de aceptación en formato checklist y, si insistía producto, quizá un diagrama. La parte seria del pensamiento sucedía dentro del IDE.</p>
+
+            <p>Ese modelo ya no sirve.</p>
+
+            <p>Cuando un agente de IA puede implementar una especificación bien escrita a la primera, y una mala especificación genera basura que cuesta más corregir que empezar desde cero, la calidad del documento deja de ser secundaria. Se convierte en el factor más importante de tu pipeline de entrega.</p>
+
+            <p>El spec-driven development no es una metodología nueva. Es asumir que, en un entorno acelerado por IA, la especificación <em>es</em> el producto. El código pasa a ser una consecuencia de esa definición. Si la spec está mal, el agente construirá rápido la solución equivocada.</p>
+
+            <p>Lo he vivido en primera persona. He dado requisitos vagos a Codex y he recibido código impecable desde el punto de vista técnico que resolvía el problema incorrecto. Y también he preparado specs claras, bien estructuradas, y he visto a los agentes entregar implementaciones casi listas para producción en el primer intento.</p>
+
+            <p>La diferencia no era el modelo. Era la entrada.</p>
+
+            <h2>Las Especificaciones Siempre Fueron el Cuello de Botella, Solo Que No Se Veía</h2>
+
+            <p>Antes de la IA, el coste de una mala especificación quedaba oculto. Los ingenieros absorbíamos la ambigüedad. Leíamos entre líneas, hacíamos preguntas por Slack, asumíamos cosas razonables y llegábamos iterando a una solución aceptable. La traducción entre una idea borrosa y software útil ocurría dentro del equipo.</p>
+
+            <img src="../assets/spec-driven-development.png" alt="Portada de Spec Driven Development" class="hero-image">
+
+            <p>Ese colchón humano escondía el problema real: a la mayoría de organizaciones se les da mal definir con claridad lo que quieren.</p>
+
+            <p>Ahora que los agentes ejecutan a velocidad de máquina, ese colchón desaparece. La ambigüedad ya no se absorbe: se amplifica. Una spec con tres interpretaciones posibles producirá tres implementaciones distintas en tres sesiones de agente, y luego gastarás más tiempo conciliándolas que si hubieras especificado bien desde el principio.</p>
+
+            <p>El cuello de botella de la especificación siempre estuvo ahí. La IA simplemente lo ha dejado al descubierto.</p>
+
+            <h2>Cómo Es una Buena Spec en 2026</h2>
+
+            <p>Una spec útil para desarrollo asistido por IA no es un Word de cuarenta páginas. Tiene estructura, contexto y un formato que tanto humanos como máquinas pueden recorrer sin fricción. Lo que mejor me está funcionando es esto:</p>
+
+            <ul>
+                <li><strong>Límites de alcance bien definidos</strong> — Qué entra y qué queda explícitamente fuera. Los agentes no infieren bien dónde termina el trabajo.</li>
+                <li><strong>Contratos de entrada y salida</strong> — Ejemplos concretos. Si el agente entiende qué entra y qué debe salir, puede resolver el medio con bastante solvencia.</li>
+                <li><strong>Restricciones de comportamiento</strong> — Casos límite, errores esperables, requisitos de rendimiento. No "debe ser rápido", sino "latencia P95 por debajo de 200 ms en este endpoint".</li>
+                <li><strong>Contexto arquitectónico</strong> — Dónde encaja esta pieza en el sistema, con qué servicios habla y qué patrones debe seguir. Los agentes trabajan mucho mejor cuando disponen de contexto de proyecto, convenciones del repo e instrucciones claras.</li>
+                <li><strong>Criterios de aceptación expresados como tests</strong> — Escribe los escenarios de validación desde el principio. Así agente y revisor comparten el mismo contrato.</li>
+            </ul>
+
+            <p>Yo guardo las specs en markdown dentro del repo. Viven junto al código. Están versionadas. El agente las lee. El revisor también. Hay una única fuente de verdad.</p>
+
+            <h2>Estrategias para Reducir el Cuello de Botella de la Especificación</h2>
+
+            <p>Detectar el cuello de botella es solo el primer paso. Lo difícil es reducirlo. Estas son algunas prácticas que me están funcionando, tanto en proyectos propios como en conversaciones con otros equipos:</p>
+
+            <h3>1. Flujos Spec-First con Ayuda de IA</h3>
+
+            <p>Usa un modelo fuerte de razonamiento para ayudarte a <em>escribir</em> la spec. Expón el problema en lenguaje natural y deja que el modelo te devuelva preguntas, casos borde que no habías contemplado y un borrador estructurado. Luego tú revisas, corriges y aprietas. Después el propio modelo implementa a partir de esa versión ya afinada.</p>
+
+            <p>Ese bucle, problema -> spec asistida por IA -> revisión humana -> implementación por IA -> validación humana, es el flujo más productivo que he encontrado.</p>
+
+            <h3>2. Especificaciones Vivas</h3>
+
+            <p>Las specs no deberían ser documentos de usar y tirar. Evolucionan. El problema es que en muchas organizaciones se pudren en cuanto empieza el desarrollo. Nadie las toca de nuevo.</p>
+
+            <p>Los equipos que mejor se están adaptando tratan las specs como código: versionadas, revisadas por PR y mantenidas en sincronía con la implementación. Algunos incluso generan diffs de especificación a partir de cambios en el código mediante IA, para que la documentación se mantenga actualizada sin depender tanto del trabajo manual.</p>
+
+            <h3>3. Plantillas y Convenciones de Especificación</h3>
+
+            <p>Estandariza el formato. Si cada feature sigue la misma estructura, contexto, alcance, contratos, restricciones y criterios de aceptación, reduces el coste mental de redactarlas. Y también facilitas que los agentes las entiendan y las sigan de forma consistente.</p>
+
+            <p>A nivel de repo, eso implica tener un directorio <code>specs/</code> con una plantilla común y convertir la revisión de la spec en un paso formal dentro del proceso de PR.</p>
+
+            <h3>4. Descomposición Como Disciplina</h3>
+
+            <p>Las specs grandes y ambiguas generan implementaciones grandes y ambiguas. Los mejores resultados llegan cuando divides el trabajo en unidades pequeñas, bien acotadas y que un agente pueda resolver en una sola pasada.</p>
+
+            <p>No es algo nuevo. Es la misma capacidad de descomponer que siempre hemos necesitado en ingeniería. La diferencia es que ahora el incentivo es mucho mayor. Una spec bien descompuesta te permite paralelizar trabajo con agentes en varias ramas y fusionarlo con bastante más confianza.</p>
+
+            <h3>5. Propiedad Compartida de las Specs</h3>
+
+            <p>Las specs no deberían vivir solo en producto ni solo en ingeniería. Las mejores que he visto nacen de una colaboración estrecha: producto define el qué y el porqué, ingeniería aterriza el cómo y las restricciones, y ambos revisan juntos antes de que ningún agente toque el código.</p>
+
+            <p>Algunas organizaciones ya están creando perfiles nuevos, llámalo spec engineer o requirements architect: alguien cuyo trabajo principal es traducir intención de negocio a especificaciones listas para agentes. Creo que veremos ese rol cada vez más.</p>
+
+            <h2>Medirlo Todo: el Nuevo Mandato del Ingeniero</h2>
+
+            <p>Aquí quiero ser directo: si no estás midiendo, estás adivinando. Y adivinar a velocidad de máquina sale carísimo.</p>
+
+            <p>Cuando el coste de desarrollar y mantener software cae un orden de magnitud, la ventaja competitiva se desplaza hacia <strong>la velocidad de iteración</strong> y <strong>la calidad de las decisiones</strong>. Ambas dependen de tener datos.</p>
+
+            <p>Nuestro trabajo ya no consiste solo en entregar features. También consiste en proporcionar herramientas y señales para que producto, diseño y liderazgo puedan decidir mejor y empujar el producto hacia un resultado útil.</p>
+
+            <p>¿Qué merece la pena medir?</p>
+
+            <ul>
+                <li><strong>Tiempo de spec a producción</strong> — Cuánto tardas desde que la especificación se aprueba hasta que está en prod. Ahí es donde aparecen los cuellos de botella reales.</li>
+                <li><strong>Tasa de éxito del agente</strong> — Qué porcentaje de implementaciones generadas por agentes supera la revisión a la primera. Es un termómetro bastante honesto de la calidad de la spec.</li>
+                <li><strong>Ratio de retrabajo</strong> — Cuánto tiempo se va en corregir la salida del agente frente a construir funcionalidad nueva. Si el retrabajo sube, suele haber specs flojas o contexto insuficiente.</li>
+                <li><strong>Métricas de adopción</strong> — Si el usuario no usa lo que construiste, probablemente la spec resolvía el problema equivocado.</li>
+                <li><strong>Origen de los defectos</strong> — ¿Los bugs nacen de ambigüedad en la spec, errores del agente o problemas de integración? Cada origen exige una corrección distinta.</li>
+            </ul>
+
+            <p>Los equipos que van a destacar en este escenario son los que construyan bucles de feedback muy cortos: lanzar rápido, medir enseguida, aprender y volver a iterar. El coste de cada iteración cae tanto que el verdadero desperdicio pasa a ser no iterar lo suficiente.</p>
+
+            <h2>Cómo se Están Adaptando las Organizaciones Modernas</h2>
+
+            <p>Por lo que veo en la industria y en conversaciones con otros ingenieros, muchas empresas ya se están reordenando alrededor de esta realidad:</p>
+
+            <ul>
+                <li><strong>Equipos más pequeños y con más palanca</strong> — En lugar de squads de ocho ingenieros, equipos de dos o tres personas apoyadas por agentes ya pueden producir algo equivalente. El perfil de contratación se mueve de "más manos" a "mejor criterio".</li>
+                <li><strong>La revisión de la spec como puerta de entrada</strong> — Cada vez más equipos exigen revisar la especificación antes de empezar a implementar. Es la nueva code review y, en muchos casos, la más importante.</li>
+                <li><strong>Cultura observability-first</strong> — Se invierte más en monitorización, analítica e infra de experimentación. Si puedes lanzar diez veces más rápido, también necesitas medir diez veces más rápido.</li>
+                <li><strong>Especificación continua</strong> — En lugar de grandes documentos cerrados al principio, se redactan specs incrementales, ligadas al descubrimiento y al feedback real de usuarios. La spec pasa a ser un artefacto vivo.</li>
+                <li><strong>QA aumentada por IA</strong> — La generación de tests, regresión visual y validación de comportamiento se delega cada vez más en agentes. Pero los criterios siguen naciendo de una especificación humana.</li>
+                <li><strong>Bases de conocimiento como infraestructura</strong> — Documentación interna, ADR, contratos de API y mapas del sistema dejan de ser algo deseable para convertirse en el contexto que hace eficaces a los agentes. Se invierte en conocimiento estructurado como antes se invertía en CI/CD.</li>
+            </ul>
+
+            <h2>La Evolución del Rol del Ingeniero</h2>
+
+            <p>Voy a ser honesto: parte de todo esto me costó asumirlo. Después de veinte años siendo valorado por mi capacidad para escribir soluciones elegantes, aceptar que una IA puede producir código equivalente en segundos tiene algo de golpe de realidad.</p>
+
+            <p>Pero cuanto más trabajo así, más claro veo que la habilidad no pierde valor, simplemente cambia de sitio. La comprensión profunda de sistemas, trade-offs y arquitectura que me llevó dos décadas construir es justo lo que hace buena una especificación. Es lo que me permite detectar cuándo la salida del agente está sutilmente mal. Es lo que me ayuda a diseñar un framework de medición que capture lo importante de verdad.</p>
+
+            <p>El rol evoluciona de "persona que escribe el código" a "persona que se asegura de que se construye lo correcto, bien construido". Eso incluye:</p>
+
+            <ul>
+                <li>Redactar y revisar especificaciones</li>
+                <li>Diseñar la arquitectura y sus restricciones</li>
+                <li>Validar la salida de los agentes contra la spec</li>
+                <li>Montar medición, observabilidad e instrumentos de feedback</li>
+                <li>Seguir el progreso y mantener coherencia entre varios frentes paralelos</li>
+                <li>Tomar decisiones de trade-off que los agentes no saben tomar</li>
+            </ul>
+
+            <p>Es otra forma de ejercer la ingeniería. Pero sigue siendo ingeniería.</p>
+
+            <h2>Mirando Hacia Delante</h2>
+
+            <p>La industria está cambiando muy rápido. El coste de desarrollo se desploma. La barrera para crear software es menor que nunca. Y eso significa que la diferencia ya no es <em>si puedes construirlo</em>, sino <em>si deberías construirlo</em> y <em>si realmente construiste lo correcto</em>.</p>
+
+            <p>El spec-driven development es la manera de responder a esas preguntas. No es la parte glamurosa de la revolución de la IA ni lo que suele acaparar titulares. Pero ahí es donde hoy vive la disciplina de ingeniería de verdad.</p>
+
+            <p>Si eres ingeniero y estás atravesando esta transición, mi consejo es simple: invierte en tu capacidad para especificar, medir y validar. El código tenderá a escribirse solo. Lo difícil es saber qué hay que escribir y demostrar que funcionó.</p>
+
+            <p>Nos leemos en la próxima historia.</p>
+        </div>
+    </main>
+
+    <footer class="container footer">
+        <div class="footer-content" style="justify-content: center;">
+            <p>© 2026 Carlos Cañizares. Engineering Stories.</p>
+        </div>
+    </footer>
+
+    <div class="floating-controls">
+        <button id="theme-toggle" class="control-btn" title="Toggle Theme" aria-label="Toggle Theme">
+            <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                </path>
+            </svg>
+            <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+        </button>
+        <button id="lang-toggle" class="control-btn" title="Cambiar idioma del artículo">
+            <span class="lang-text">ES</span>
+        </button>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

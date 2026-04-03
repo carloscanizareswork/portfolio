@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>OpenCode + Ollama: Powerful Free Models and Zero Cloud Costs — Carlos Cañizares</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .story-content {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+
+        .story-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .story-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.2em;
+            line-height: 1.15;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .story-header h1 {
+            background: linear-gradient(to right, #8b5cf6, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-meta {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+        }
+
+        .article-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .article-body h2 {
+            margin-top: 3rem;
+            color: var(--text-main);
+        }
+
+        .article-body h3 {
+            margin-top: 2rem;
+            color: var(--text-main);
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .article-body ul,
+        .article-body ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            font-weight: 300;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-body blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1.5rem;
+            font-style: italic;
+            margin: 2rem 0;
+            color: var(--text-muted);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin-bottom: 3rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .centered-image {
+            display: block;
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: center;
+            margin: 0 auto 3rem auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
+        }
+
+        .code-block {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        .code-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body data-story-id="opencode" data-story-lang="en">
+    <canvas id="page-matrix" aria-hidden="true"></canvas>
+
+    <main class="story-content">
+        <a href="../#stories" class="back-link">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+            Back to Stories
+        </a>
+
+        <header class="story-header">
+            <div class="story-meta">AI & Engineering • Apr 2026</div>
+            <h1>OpenCode + Ollama: Powerful Free Models and Zero Cloud Costs</h1>
+        </header>
+
+        <div class="article-body">
+            <p>I've been testing a lot of AI coding tools this year — enough to have strong opinions about all of them. But there was one I kept seeing mentioned in threads and community channels that I hadn't tried yet: <strong>OpenCode</strong>.</p>
+
+            <p>People were enthusiastic — not in the "look at this shiny demo" way, but in a more low-key, practical way. The recurring theme was the Zen models. I was skeptical. I had tools I trusted. Why add another one to the rotation?</p>
+
+            <h2>The Zen Models: Free Power You Don't Expect</h2>
+
+            <p>The first thing that caught me off guard wasn't the CLI. It was the Zen model tier.</p>
+
+            <p>OpenCode ships with a set of open models — the Zen family — that are free to use within the tool. I expected them to be the "good enough for simple things" kind of free. What I got was something considerably more capable than that framing suggests.</p>
+
+            <p>Zen models handle real multi-file refactors. They follow architectural context from instruction files. They reason about side effects and edge cases. They're not GPT-3.5 tier dressed up in new branding — they feel like first-class reasoning models. The fact that they're free made me genuinely reconsider assumptions about the economics of agentic development.</p>
+
+            <blockquote>
+                The Zen models aren't a free tier that upsells you to something better. They're a legitimate tool. That surprised me more than anything else.
+            </blockquote>
+
+            <p>For the kind of work I do — full-stack TypeScript and Node.js, occasional .NET, lots of infrastructure — the Zen models covered probably 70% of my prompts without needing to switch to a premium provider. That changes the math on daily usage significantly.</p>
+
+            <h2>Running Fully Local with Ollama</h2>
+
+            <img src="../assets/open-code-ollama.png" alt="OpenCode and Ollama" class="hero-image">
+
+            <p>One thing that genuinely stood out: OpenCode integrates cleanly with Ollama, which means you can point it at a locally running model and keep everything on your machine. No remote API calls, no data leaving your environment. For work involving sensitive codebases or internal infrastructure, this matters.</p>
+
+            <p>The config is straightforward — you set the provider to Ollama and specify whichever model you have running locally. From that point, OpenCode behaves exactly the same way, just against your local inference server instead of a cloud endpoint.</p>
+
+            <p>On top of that, OpenCode lets you disable telemetry in the config file. If you want to be certain no usage data is being sent anywhere, you can turn it off explicitly. Both things together — local models and no telemetry — make it a reasonable choice for environments where privacy or compliance rules out cloud-based tools entirely.</p>
+
+            <h2>The CLI-First Approach</h2>
+
+            <p>Most AI coding tools are IDE-first. OpenCode is terminal-first, and that's a deliberate choice you either click with or you don't. I clicked with it.</p>
+
+            <p>Like most tools in this space, OpenCode supports the concepts that are becoming standard across the ecosystem: <strong>agents</strong> (specialized instances with a defined role, model, and context), <strong>skills</strong> (reusable instruction modules loaded as markdown files), and <strong>workflows</strong> (configurations that chain agents together and define handoff conditions). These ideas aren't new or unique to OpenCode — you'll find equivalents in Claude, Codex, Antigravity, and others.</p>
+
+            <p>What OpenCode brings is a clean, config-file-driven way to define all of this from the terminal. Everything lives in markdown files in your repo. The config format is readable. Running a workflow is a single command. For a terminal-native workflow, it feels natural in a way that IDE-based tooling sometimes doesn't.</p>
+
+            <h2>Building Specialist Agents</h2>
+
+            <p>The best way to understand OpenCode's power is to walk through what specialist agents actually look like in practice. I'll describe three I've set up and find genuinely useful every day.</p>
+
+            <h3>Agent 1: The E2E Specialist</h3>
+
+            <p>End-to-end testing is one of those areas where most agents fail in interesting ways. They write tests that are syntactically correct but semantically fragile — tests that pass in isolation and shatter in CI because they don't understand the app's real flows, state management patterns, or async behavior.</p>
+
+            <p>An E2E specialist agent solves this by having deeply contextual skills loaded before it touches any test file.</p>
+
+            <div class="code-block">
+                <div class="code-label">agents/e2e-specialist.md</div>
+                <pre>---
+name: e2e-specialist
+model: zen-1
+description: Specialist in end-to-end testing with Playwright
+skills:
+  - skills/playwright-conventions.md
+  - skills/app-flows.md
+  - skills/selectors-guide.md
+tools:
+  - read_file
+  - write_file
+  - run_tests
+context:
+  - src/
+  - tests/e2e/
+---
+
+You are an E2E testing specialist. Your only job is to write, maintain,
+and debug end-to-end tests using Playwright. You follow the conventions
+defined in your skills strictly. You never write unit tests or integration
+tests — redirect those requests to the appropriate agent.
+
+When writing a new test:
+1. Read the relevant user flow from skills/app-flows.md
+2. Check existing selectors in skills/selectors-guide.md before creating new ones
+3. Follow the page object pattern defined in skills/playwright-conventions.md
+4. Always include a meaningful test description and arrange/act/assert comments</pre>
+            </div>
+
+            <p>The skills attached to this agent are where the real value lives. <code>playwright-conventions.md</code> codifies how the team uses Playwright — page object patterns, custom commands, retry strategies, and CI configuration hints. <code>app-flows.md</code> describes the critical user journeys in plain language. <code>selectors-guide.md</code> is a catalog of stable test IDs and how to find elements correctly in the app.</p>
+
+            <p>With these skills loaded, the E2E agent doesn't guess at structure. It reads the conventions and applies them. The result is tests that look like they were written by a senior QA engineer who's been on the project for six months — not by a model that's seeing the codebase for the first time.</p>
+
+            <h3>Agent 2: The Code Review Specialist</h3>
+
+            <p>Code review is something I've tried to delegate to AI tools many times, with mixed results. Generic models give generic feedback: "consider adding error handling," "this function is too long." Technically accurate, practically useless.</p>
+
+            <p>A code review specialist agent, equipped with project-specific skills, gives a completely different level of feedback.</p>
+
+            <div class="code-block">
+                <div class="code-label">agents/code-reviewer.md</div>
+                <pre>---
+name: code-reviewer
+model: zen-2
+description: Code review specialist with project conventions and security awareness
+skills:
+  - skills/coding-standards.md
+  - skills/architecture-decisions.md
+  - skills/security-checklist.md
+  - skills/performance-patterns.md
+tools:
+  - read_file
+  - git_diff
+  - search_codebase
+context:
+  - src/
+  - .github/
+---
+
+You are a senior code reviewer. Your job is to review pull request diffs
+and provide structured, actionable feedback grounded in the project's
+actual conventions and architecture decisions.
+
+Review structure:
+- **Critical**: Security issues, breaking changes, correctness bugs
+- **Important**: Convention violations, architectural concerns, missing error handling
+- **Suggestions**: Performance improvements, readability, test coverage gaps
+- **Praise**: What was done well (always include at least one)
+
+You have access to the full codebase for context. Always check if similar
+patterns already exist before flagging something as missing. Never suggest
+adding an abstraction that the codebase doesn't already use.</pre>
+            </div>
+
+            <p>The <code>architecture-decisions.md</code> skill is particularly important here. It's an ADR log — Architecture Decision Records — written in plain language, explaining why the codebase is structured the way it is. When the reviewer agent has this context, it stops suggesting "you should use a repository pattern" when the team deliberately chose not to, because it knows the reasoning behind that decision.</p>
+
+            <p>This turns the code review agent from a generic linter with opinions into something that understands your system.</p>
+
+            <h3>Agent 3: The DevOps Specialist (GCloud + GitHub Releases)</h3>
+
+            <p>Infrastructure and release operations were the area where I was most skeptical about delegating to an AI agent. Too much blast radius. Too many non-obvious dependencies. Too easy to make a change that looks right but breaks something in production.</p>
+
+            <p>But with the right constraints and skills, the DevOps specialist agent has become one of the most valuable I run.</p>
+
+            <div class="code-block">
+                <div class="code-label">agents/devops-specialist.md</div>
+                <pre>---
+name: devops-specialist
+model: zen-2
+description: GCloud and GitHub releases specialist for staging and production deployments
+skills:
+  - skills/gcloud-config.md
+  - skills/github-release-process.md
+  - skills/environment-variables.md
+  - skills/rollback-procedures.md
+tools:
+  - read_file
+  - write_file
+  - run_command
+  - github_api
+context:
+  - .github/workflows/
+  - infra/
+  - deploy/
+constraints:
+  - never_delete_resources: true
+  - require_confirmation_for: [production, database, iam]
+  - dry_run_by_default: true
+---
+
+You are a DevOps specialist for Google Cloud and GitHub releases.
+You help configure Cloud Run services, manage GitHub Actions workflows,
+create versioned releases, and coordinate deployments to staging and production.
+
+You ALWAYS run in dry-run mode unless explicitly told otherwise.
+For any action affecting production, IAM, or databases — stop and ask
+for confirmation before proceeding, even if you think the action is safe.
+
+When creating a release:
+1. Validate all environment variables are present in the target environment
+2. Check that the staging deployment is healthy before promoting to production
+3. Create a GitHub release with a properly formatted changelog
+4. Tag the commit with the version number following semver conventions
+5. Notify via the configured channel (see skills/github-release-process.md)</pre>
+            </div>
+
+            <p>The <code>constraints</code> block is where safety lives. The agent is configured to dry-run by default, never delete resources, and always ask for confirmation before touching production, IAM, or databases. This isn't just a prompt instruction — it's a structural constraint that survives context window drift.</p>
+
+            <h2>Building a Workflow: PR Approval and Release to Staging</h2>
+
+            <p>Individual specialist agents are powerful. Workflows that chain them together are where OpenCode becomes something different — a genuine automation layer for engineering operations.</p>
+
+            <p>Here's a workflow I've set up for the full cycle from PR approval to staging release. It uses all three specialists above, plus a thin orchestrator that manages handoffs and conditions.</p>
+
+            <div class="code-block">
+                <div class="code-label">workflows/pr-to-staging.md</div>
+                <pre>---
+name: pr-to-staging
+description: Full workflow from PR code review to staging deployment
+trigger: manual
+input:
+  - pr_number: string
+  - branch: string
+---
+
+## Steps
+
+### 1. Code Review
+agent: code-reviewer
+task: |
+  Review PR #{{pr_number}} from branch {{branch}}.
+  Fetch the diff using git_diff and provide a structured review.
+  Output your review as a JSON object with fields:
+    - verdict: "approve" | "request_changes" | "comment"
+    - critical_issues: string[]
+    - important_issues: string[]
+    - suggestions: string[]
+on_verdict_request_changes: stop_workflow
+
+### 2. E2E Test Generation Check
+agent: e2e-specialist
+condition: step_1.verdict == "approve"
+task: |
+  Check branch {{branch}} for any new user-facing features or routes
+  that don't have corresponding E2E test coverage.
+  If coverage gaps exist, generate the missing tests and output
+  the file paths created.
+  Output: { tests_added: string[], coverage_ok: boolean }
+
+### 3. Staging Deployment
+agent: devops-specialist
+condition: step_2.coverage_ok == true
+task: |
+  Deploy branch {{branch}} to the staging environment on Cloud Run.
+  Use dry_run: false for this step — staging deployment is approved.
+  Steps:
+    1. Build the container image with tag {{branch}}-{{timestamp}}
+    2. Push to Artifact Registry
+    3. Deploy to cloud-run/staging service
+    4. Run smoke tests against staging URL
+    5. Report deployment status
+  Output: { deployed: boolean, staging_url: string, smoke_tests_passed: boolean }
+
+### 4. GitHub Release Draft
+agent: devops-specialist
+condition: step_3.deployed == true
+task: |
+  Create a draft GitHub release for branch {{branch}}.
+  Generate a changelog from commits since the last release tag.
+  Tag format: v{{next_semver}} (auto-detect from commit messages).
+  Set the release as a draft — do not publish until manually approved.
+  Output: { release_url: string, tag: string }</pre>
+            </div>
+
+            <p>When this workflow runs, OpenCode orchestrates the four specialists in sequence. Each step receives the output of the previous one. Conditions gate progression — if code review requests changes, the workflow stops. If E2E coverage is incomplete, staging deployment waits.</p>
+
+            <p>The whole thing runs from a single command in the terminal:</p>
+
+            <div class="code-block">
+                <pre>opencode run workflows/pr-to-staging.md --input pr_number=142 branch=feature/user-onboarding</pre>
+            </div>
+
+            <p>And you watch it execute — agent by agent, step by step — with full output visibility in the terminal. It's not magic. It's orchestrated specialization, which is something better than magic: it's reliable.</p>
+
+            <h2>The Value Is in Writing the Skills</h2>
+
+            <p>This applies to any tool that supports skill or instruction files — not just OpenCode — but it's worth saying clearly: the real value isn't the agent running the file. It's the process of writing the file.</p>
+
+            <p>When you write a skill for your E2E agent — your Playwright conventions, your app flows, your selector guide — you're also writing the onboarding document a new team member needs. When you write the architecture decisions skill, you're capturing knowledge that usually evaporates when senior engineers leave. The file serves both purposes simultaneously.</p>
+
+            <blockquote>
+                Building a well-configured agent is the same work as writing a good runbook. Except the runbook also executes itself.
+            </blockquote>
+
+            <h2>A Few Things Worth Knowing Before You Start</h2>
+
+            <p>Nothing dramatic, but worth setting expectations:</p>
+
+            <ul>
+                <li><strong>The upfront investment is real.</strong> You don't get much value from a bare agent. The payoff comes after you've written your skill files — your conventions, your flows, your context. That takes time, and it's time well spent, but don't expect instant results.</li>
+                <li><strong>The Zen models have limits.</strong> They handled most of my day-to-day prompts well, but for harder reasoning tasks I did reach for a premium model. Free doesn't mean unlimited capability — it just means the baseline is higher than you'd expect.</li>
+            </ul>
+
+            <h2>Where I've Landed</h2>
+
+            <p>OpenCode is now a permanent part of my rotation. Not because it does something no other tool does — most of what it offers exists elsewhere in some form — but because it does it cleanly, from the terminal, with a config format that stays out of your way.</p>
+
+            <p>The Zen models were the real surprise. The CLI approach is pleasant. The skill system works well and follows patterns you likely already know from other tools.</p>
+
+            <p>I had it on my list for months. If you're terminal-comfortable and haven't tried it yet, it's worth an afternoon. The activation cost is low and the Zen models alone make the experiment worthwhile.</p>
+
+            <p>Happy building, and see you in the next story.</p>
+        </div>
+    </main>
+
+    <footer class="container footer">
+        <div class="footer-content" style="justify-content: center;">
+            <p>© 2026 Carlos Cañizares. Engineering Stories.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Controls Panel -->
+    <div class="floating-controls">
+        <button id="theme-toggle" class="control-btn" title="Toggle Theme" aria-label="Toggle Theme">
+            <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                </path>
+            </svg>
+            <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+        </button>
+        <button id="lang-toggle" class="control-btn" title="Switch Language">
+            <span class="lang-text">EN</span>
+        </button>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

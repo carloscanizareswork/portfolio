@@ -41,13 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json()
       window.__data = data
       window.__header = data.header || {}
+      window.__dataPrefix = prefix
 
       // Only render these sections if elements exist (main page)
       const savedLang = localStorage.getItem('site-lang') || 'en'
       if (document.getElementById('hero-name')) renderHeader(data.header || {})
       if (document.getElementById('ongoing-projects-grid')) renderOngoingProjects(data.ongoingProjects || [], savedLang)
       if (document.getElementById('journey-list')) renderJourney(data.journey || [], savedLang)
-      if (document.getElementById('stories-grid')) renderStories(data.stories || [], prefix)
+      if (document.getElementById('stories-grid')) renderStories(data.stories || [], prefix, savedLang)
       // renderContact(data.contact || {}) // Skip for now to avoid breaking the manual card
 
       // load i18n and wire settings
@@ -80,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.__data) {
       if (document.getElementById('ongoing-projects-grid')) renderOngoingProjects(window.__data.ongoingProjects || [], lang)
       if (document.getElementById('journey-list')) renderJourney(window.__data.journey || [], lang)
+      if (document.getElementById('stories-grid')) renderStories(window.__data.stories || [], window.__dataPrefix || '', lang)
     }
   }
 
@@ -93,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // language
     const savedLang = localStorage.getItem('site-lang') || 'en'
     applyTranslations(savedLang)
-    updateLangBtn(savedLang)
+    const currentStory = getCurrentStoryContext()
+    updateLangBtn(currentStory ? currentStory.lang : savedLang)
 
     // Background Toggle
     const bgBtn = document.getElementById('bg-toggle')
@@ -124,19 +127,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Language Toggle (Cycle EN -> ES -> CA -> EN)
     const langBtn = document.getElementById('lang-toggle')
     if (langBtn) {
-      langBtn.addEventListener('click', () => {
-        const langs = ['en', 'es', 'ca']
-        const cur = localStorage.getItem('site-lang') || 'en'
-        const idx = langs.indexOf(cur)
-        // If current lang not found, default to 0 (en)
-        const currentIdx = idx !== -1 ? idx : 0
-        const nextIdx = (currentIdx + 1) % langs.length
-        const nextLang = langs[nextIdx]
+      if (currentStory) {
+        if (currentStory.availableLanguages.length <= 1) {
+          langBtn.style.display = 'none'
+        } else {
+          langBtn.title = 'Switch Article Language'
+          langBtn.addEventListener('click', () => {
+            const idx = currentStory.availableLanguages.indexOf(currentStory.lang)
+            const currentIdx = idx !== -1 ? idx : 0
+            const nextLang = currentStory.availableLanguages[(currentIdx + 1) % currentStory.availableLanguages.length]
+            localStorage.setItem('site-lang', nextLang)
+            window.location.href = getStoryLink(currentStory.story, nextLang, window.__dataPrefix || '')
+          })
+        }
+      } else {
+        langBtn.addEventListener('click', () => {
+          const langs = ['en', 'es', 'ca']
+          const cur = localStorage.getItem('site-lang') || 'en'
+          const idx = langs.indexOf(cur)
+          const currentIdx = idx !== -1 ? idx : 0
+          const nextIdx = (currentIdx + 1) % langs.length
+          const nextLang = langs[nextIdx]
 
-        applyTranslations(nextLang)
-        updateLangBtn(nextLang)
-        localStorage.setItem('site-lang', nextLang)
-      })
+          applyTranslations(nextLang)
+          updateLangBtn(nextLang)
+          localStorage.setItem('site-lang', nextLang)
+        })
+      }
     }
   }
 
@@ -237,10 +254,14 @@ document.addEventListener('DOMContentLoaded', () => {
       let desc = p.description
       if (lang === 'es' && p.description_es) desc = p.description_es
       if (lang === 'ca' && p.description_ca) desc = p.description_ca
-      const href = p.url || (p.links && p.links[0] && p.links[0].href) || '#'
-      const target = href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''
+      const href = p.url || (p.links && p.links[0] && p.links[0].href) || ''
+      const hasLink = Boolean(href && href !== '#')
+      const target = hasLink && href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''
+      const tag = hasLink ? 'a' : 'div'
+      const attrs = hasLink ? ` href="${href}"${target}` : ''
+      const classes = `card project-card${hasLink ? ' clickable-card' : ''}`
       return `
-        <a class="card project-card clickable-card" href="${href}"${target}>
+        <${tag} class="${classes}"${attrs}>
             ${p.thumbnail ? `<img src="${p.thumbnail}" alt="${p.title}" class="project-thumb">` : '<div class="project-thumb-placeholder"></div>'}
             <div class="card-content">
                 <h3>${p.title}</h3>
@@ -250,39 +271,148 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${(p.links || []).map(l => `<a href="${l.href}" class="link-btn">${l.label}</a>`).join('')}
                 </div>
             </div>
-        </a>
+        </${tag}>
     `
     }).join('')
 
-    initSlider(track, visibleItems.length, '.project-prev', '.project-next')
+    initSlider(track, visibleItems.length, '.project-prev', '.project-next', 2)
   }
 
-  function renderStories(stories, prefix = '') {
-    const grid = document.getElementById('stories-grid');
-    if (!grid || !stories) return;
-
-    grid.innerHTML = stories.map(story => `
-        <a class="story-card card clickable-card" href="${story.link}">
-            ${story.coverImage ? `<div class="story-cover" style="background-image:url('${prefix}${story.coverImage}');"></div>` : ''}
-            <div class="story-date">${story.date}</div>
-            <h3>${story.title}</h3>
-            <p>${story.excerpt}</p>
-            <span class="read-more">Read article &rarr;</span>
-        </a>
-    `).join('');
-
-    initSlider(grid, stories.length, '.story-prev', '.story-next')
+  function getStoryUiCopy(lang) {
+    return (window.__i18n && window.__i18n[lang] && window.__i18n[lang].storyUi)
+      || (window.__i18n && window.__i18n.en && window.__i18n.en.storyUi)
+      || { readMore: 'Read article', availableLanguages: 'Available languages' }
   }
 
-  function initSlider(track, count, prevSelector, nextSelector) {
+  function getStoryVersion(story, lang = 'en') {
+    const translation = lang !== 'en' && story.translations && story.translations[lang]
+    if (translation) {
+      return {
+        lang,
+        date: translation.date || story.date,
+        title: translation.title || story.title,
+        excerpt: translation.excerpt || story.excerpt,
+        link: translation.link || story.link
+      }
+    }
+
+    return {
+      lang: 'en',
+      date: story.date,
+      title: story.title,
+      excerpt: story.excerpt,
+      link: story.link
+    }
+  }
+
+  function getStoryLink(story, lang = 'en', prefix = '') {
+    const version = getStoryVersion(story, lang)
+    return `${prefix}${version.link}`
+  }
+
+  function getCurrentStoryContext() {
+    const storyId = document.body.dataset.storyId
+    const storyLang = document.body.dataset.storyLang || 'en'
+    if (!storyId || !window.__data || !Array.isArray(window.__data.stories)) return null
+
+    const story = window.__data.stories.find(item => item.id === storyId)
+    if (!story) return null
+
+    return {
+      story,
+      lang: storyLang,
+      availableLanguages: ['en', ...Object.keys(story.translations || {})]
+    }
+  }
+
+  function bindStoryCardInteractions(grid) {
+    grid.querySelectorAll('.story-card[data-href]').forEach(card => {
+      const navigate = () => {
+        const href = card.getAttribute('data-href')
+        const lang = card.getAttribute('data-lang')
+        if (!href) return
+        if (lang) localStorage.setItem('site-lang', lang)
+        window.location.href = href
+      }
+
+      card.addEventListener('click', e => {
+        if (e.target.closest('a, button')) return
+        navigate()
+      })
+
+      card.addEventListener('keydown', e => {
+        if ((e.key !== 'Enter' && e.key !== ' ') || e.target !== card) return
+        e.preventDefault()
+        navigate()
+      })
+    })
+
+    grid.querySelectorAll('.story-card a[data-lang]').forEach(link => {
+      link.addEventListener('click', () => {
+        const lang = link.getAttribute('data-lang')
+        if (lang) localStorage.setItem('site-lang', lang)
+      })
+    })
+  }
+
+  function renderStories(stories, prefix = '', lang = 'en') {
+    const grid = document.getElementById('stories-grid')
+    if (!grid || !stories) return
+
+    const ui = getStoryUiCopy(lang)
+    grid.innerHTML = stories.map(story => {
+      const version = getStoryVersion(story, lang)
+      const availableLanguages = ['en', ...Object.keys(story.translations || {})]
+      const primaryHref = getStoryLink(story, version.lang, prefix)
+      const hasLanguageToggle = availableLanguages.length > 1
+
+      return `
+        <article class="story-card card clickable-card" role="link" tabindex="0" data-href="${primaryHref}" data-lang="${version.lang}">
+          ${story.coverImage ? `<div class="story-cover" style="background-image:url('${prefix}${story.coverImage}');${story.coverSize ? ` background-size:${story.coverSize};` : ''}${story.coverPosition ? ` background-position:${story.coverPosition};` : ''}"></div>` : ''}
+          <div class="story-card-meta">
+            <div class="story-date">${version.date}</div>
+            ${hasLanguageToggle ? `
+              <div class="story-lang-toggle" aria-label="${ui.availableLanguages}">
+                ${availableLanguages.map(code => `
+                  <a
+                    class="story-lang-option${code === version.lang ? ' is-active' : ''}"
+                    href="${getStoryLink(story, code, prefix)}"
+                    data-lang="${code}"
+                    aria-current="${code === version.lang ? 'true' : 'false'}"
+                  >${code.toUpperCase()}</a>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+          <h3>${version.title}</h3>
+          <p>${version.excerpt}</p>
+          <a class="read-more story-primary-link" href="${primaryHref}" data-lang="${version.lang}">${ui.readMore} &rarr;</a>
+        </article>
+      `
+    }).join('')
+
+    bindStoryCardInteractions(grid)
+    initSlider(grid, stories.length, '.story-prev', '.story-next', 3)
+  }
+
+  function initSlider(track, count, prevSelector, nextSelector, desktopVisible = 2) {
     let index = 0
-    const prev = document.querySelector(prevSelector)
-    const next = document.querySelector(nextSelector)
-    if (!prev || !next) return
+    const prevControl = document.querySelector(prevSelector)
+    const nextControl = document.querySelector(nextSelector)
+    if (!prevControl || !nextControl) return
+
+    if (track.__sliderResizeHandler) {
+      window.removeEventListener('resize', track.__sliderResizeHandler)
+    }
+
+    const prev = prevControl.cloneNode(true)
+    const next = nextControl.cloneNode(true)
+    prevControl.parentNode.replaceChild(prev, prevControl)
+    nextControl.parentNode.replaceChild(next, nextControl)
 
     function update() {
       const isMobile = window.innerWidth <= 768
-      const visible = isMobile ? 1 : 2
+      const visible = isMobile ? 1 : desktopVisible
       const max = Math.max(0, count - visible)
       if (index > max) index = max
       if (index < 0) index = 0
@@ -301,11 +431,12 @@ document.addEventListener('DOMContentLoaded', () => {
     prev.addEventListener('click', () => { if (index > 0) { index--; update() } })
     next.addEventListener('click', () => {
       const isMobile = window.innerWidth <= 768
-      const visible = isMobile ? 1 : 2
+      const visible = isMobile ? 1 : desktopVisible
       if (index < count - visible) { index++; update() }
     })
 
-    window.addEventListener('resize', update)
+    track.__sliderResizeHandler = update
+    window.addEventListener('resize', track.__sliderResizeHandler)
     // Initial update after a small delay to ensure rendering is complete
     setTimeout(update, 100)
   }
