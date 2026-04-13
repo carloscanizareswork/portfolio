@@ -258,22 +258,6 @@
   },
   "stories": [
     {
-      "id": "opencode",
-      "date": "Apr 2026",
-      "title": "OpenCode + Ollama: Powerful Free Models and Zero Cloud Costs",
-      "excerpt": "Free Zen models that are actually capable, full local inference via Ollama, and no telemetry. OpenCode had been on my list for months — turns out the cost argument alone was worth the try...",
-      "link": "stories/opencode.html",
-      "translations": {
-        "es": {
-          "date": "Apr 2026",
-          "title": "OpenCode + Ollama: Modelos Gratuitos Potentes y Cero Costes en la Nube",
-          "excerpt": "Modelos Zen gratuitos que realmente rinden, inferencia local completa con Ollama y sin telemetría. Lo tenía en mi lista desde hacía meses — resulta que el argumento del coste solo ya valía la prueba...",
-          "link": "stories/opencode-es.html"
-        }
-      },
-      "coverImage": "assets/open-code-ollama.png"
-    },
-    {
       "id": "spec-driven-development",
       "date": "Mar 2026",
       "title": "Spec-Driven Development",
